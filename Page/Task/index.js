@@ -13,11 +13,10 @@ import {
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-    faArrowAltCircleLeft,
     faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from 'react-redux';
-import db from '../../Config'
+import db from '../../Config/index'
 
 
 const Task = (props) => {
@@ -47,18 +46,19 @@ const Task = (props) => {
 
 
     const onHome = async () => {
-        await db.database().ref().child(`/history/${uid}/${timeNow}`)
+        await db.database().ref().child(`/task_container/${timeNow}/${name}`)
             .once('value', async (snapshoot) => {
+                console.log(snapshoot)
                 if (snapshoot.exists()) {
-                    return alert('anda sudah upload ')
+                    alert('anda sudah upload ')
                 }
                 else {
                     await db.database().ref().child(`/task/${timeNow}/${name}`).remove();
                     await db.database().ref().child(`/task_container/${timeNow}/${name}`)
                         .set(history)
                         .then(() => {
-
-                            props.navigation.navigate('Task')
+                            props.navigation.navigate("Task")
+                        
                         })
                         .catch((error) => {
                             alert(error)
@@ -102,7 +102,7 @@ const Task = (props) => {
                         )
                     })}
                     <View style={{ flexDirection: "row", width: "100%", justifyContent: "space-around", marginTop: "3%" }}>
-                        <TouchableOpacity style={{ width: 150, height: 45, borderRadius: 25, backgroundColor: "#a55eea", alignItems: "center", justifyContent: "center", }} onPress={() => { onHome() }}>
+                        <TouchableOpacity style={{ width: 150, height: 45, borderRadius: 25, backgroundColor: "#a55eea", alignItems: "center", justifyContent: "center", }} onPress={ onHome }>
                             <View style={{ marginHorizontal: "15%", flexDirection: "row", marginTop: "3%" }}>
                                 <Text style={{ color: "white" }}>Upload</Text>
                             </View>

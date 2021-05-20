@@ -36,7 +36,7 @@ const Task2 = (props) => {
         db.database().ref('task')
             .child(`${timeNow}`)
             .child(`${name}`)
-            .child(`${id}`)
+            .child(`${state.id}`)
             .set(state)
             .then(()=>{
                         props.navigation.navigate('Task')

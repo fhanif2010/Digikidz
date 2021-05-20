@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "@firebase/firestore";
-import db from "../../Config/index";
+import db from "../../Config/index"
 import {
     View,
     Text,
@@ -17,7 +17,7 @@ import {
 
 } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch,useSelector } from 'react-redux';
-import { roundToNearestPixel } from "react-native/Libraries/Utilities/PixelRatio";
+
 
 
 const Login = (props) => {
@@ -28,11 +28,13 @@ const Login = (props) => {
     const [state,setState] = useState({username:'',password:''})
 
 
-    _onLogin = async () => {
+    const _onLogin = async () => {
 
         db.auth()
             .signInWithEmailAndPassword(state.username, state.password.toLowerCase())
             .then(async (data) => {
+
+                console.log(data)
 
                 db.firestore()
                     .collection('User_data')
@@ -105,7 +107,7 @@ const Login = (props) => {
 
                 </View>
                 <View style={{ marginHorizontal: 130, marginTop: 50, width: 100, justifyContent: "center" }}>
-                    <Button title="submit" onPress={() => _onLogin()} />
+                    <Button title="submit" onPress={ _onLogin} />
                 </View>
             </KeyboardAvoidingView>
         </View>

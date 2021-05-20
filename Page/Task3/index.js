@@ -7,26 +7,35 @@ import {
     Image,
     KeyboardAvoidingView,
     ScrollView,
+    TouchableOpacity
 } from "react-native";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { set } from "react-native-reanimated";
+
+import db from "../../Config/index";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const Task3 = (props) =>{
+
+    const name = useSelector(state => state.AuthReducer.name);
+    const time = new Date();
+    const timeNow = time.toDateString();
     const params = props.route.params.data;
     const [state, setState] = useState({
         name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id:params.id,time: params.time
     })
+
     onTask = () => {
         this.props.navigation.navigate('Task')
     }
 
 
+    const onDeleteTask = () =>{
+        db.database().ref(`/task/${timeNow}/${name}/${state.id}`).remove()
+        
+    }
+
     useEffect(()=>{
+        console.log(params)
         setState((prev)=>({...prev,
             name:params.name,
             program:params.program,
@@ -105,13 +114,13 @@ const Task3 = (props) =>{
                                     </View>
 
                                     <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                                        <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTask() }}>
+                                        <TouchableOpacity  style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onDeleteTask}>
                                             <View style={{ alignItems: "center", marginVertical: 11 }}>
                                                 <Text style={{ color: "white" }}>Delete</Text>
                                             </View>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTask() }}>
+                                        <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={()=>{}}>
                                             <View style={{ alignItems: "center", marginVertical: 11 }}>
                                                 <Text style={{ color: "white" }}>Update</Text>
                                             </View>

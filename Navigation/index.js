@@ -29,7 +29,6 @@ import EditProfil from "../Page/Admin/User List/EditProfil/index";
 import TaskAdmin from "../Page/Admin/TaskAdmin/index";
 import TaskAdmin2 from "../Page/Admin/TaskAdmin/TaskAdmin2/index";
 import TaskAdmin3 from "../Page/Admin/TaskAdmin/TaskAdmin3/index";
-import TaskAdmin4 from "../Page/Admin/TaskAdmin/TaskAdmin4/index";
 
 import TrialAdmin from "../Page/Admin/TrialAdmin/index";
 import TrialProgres from "../Page/Admin/TrialAdmin/TrialProgresAdmin/index";
@@ -128,8 +127,7 @@ function Navigation() {
           options={{ headerShown: false }} />
         <Stack.Screen name="TaskAdmin3" component={TaskAdmin3}
           options={{ headerShown: false }} />
-        <Stack.Screen name="TaskAdmin4" component={TaskAdmin4}
-          options={{ headerShown: false }} />
+      
 
         <Stack.Screen name="TrialAdmin" component={TrialAdmin}
           options={{ headerShown: false }} />
