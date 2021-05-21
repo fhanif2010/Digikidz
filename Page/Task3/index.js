@@ -24,14 +24,17 @@ const Task3 = (props) =>{
         name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id:params.id,time: params.time
     })
 
-    onTask = () => {
-        this.props.navigation.navigate('Task')
-    }
-
 
     const onDeleteTask = () =>{
         db.database().ref(`/task/${timeNow}/${name}/${state.id}`).remove()
         
+        props.navigation.navigate('Task')
+    }
+
+    const handleUpdateTask = () =>{
+        db.database().ref(`/task/${timeNow}/${name}/${state.id}`).update( state)
+
+        props.navigation.navigate('Task')
     }
 
     useEffect(()=>{
@@ -120,7 +123,7 @@ const Task3 = (props) =>{
                                             </View>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={()=>{}}>
+                                        <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={handleUpdateTask}>
                                             <View style={{ alignItems: "center", marginVertical: 11 }}>
                                                 <Text style={{ color: "white" }}>Update</Text>
                                             </View>
