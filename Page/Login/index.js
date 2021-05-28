@@ -49,6 +49,7 @@ const Login = (props) => {
                             email: docs.data().email,
                             uid: data.user.uid,
                             dob: docs.data().DoB,
+                            posisi:docs.data().posisi
                         })
 
                         if (docs.data().status === "v2") {

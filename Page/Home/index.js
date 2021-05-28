@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Home = (props) => {
     const name = useSelector(state => state.AuthReducer.name);
+    const posisi = useSelector(state => state.AuthReducer.posisi);
     const dispatch = useDispatch();
     const onLogout = async () => {
         await dispatch({ type: 'LOGOUT' });
@@ -39,7 +40,7 @@ const Home = (props) => {
             <View style={{ width: "100%", height: "25%", }}>
                 <View style={{ paddingTop: "10%", paddingLeft: "10%" }}>
                     <Text style={{ fontSize: 35, color: "white" }}>{name}</Text>
-                    <Text style={{ fontSize: 15, color: "white" }}>TEACHER</Text>
+                    <Text style={{ fontSize: 15, color: "white" }}>{posisi}</Text>
                 </View>
             </View>
             <View style={{ alignItems: "center", marginTop: 10, position: "absolute", right: 5, top: 10 }}>

@@ -39,7 +39,7 @@ const HistoryName = (props) => {
                     <View style={{ height: 150 }}>
                         <View style={{ paddingTop: "10%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>HISTORY</Text>
-                            <Text style={{ fontSize: 15, color: "white" }}>16-Maret-2021</Text>
+                            <Text style={{ fontSize: 15, color: "white" }}>{date}</Text>
                         </View>
                     </View>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -13,8 +13,29 @@ import {
     faArrowAltCircleLeft,
     faPlus
 } from "@fortawesome/free-solid-svg-icons";
+import db from "../../Config/index";
+
+
 
 const Cuti = (props) => {
+
+    const [listCuti,setListCuti]=useState([])
+
+    React.useEffect(()=>{
+        db.database().ref().child(`/cuti_progress`)
+        .on('value', (snapshoot) => {
+            const data = snapshoot.val();
+            console.log(data)
+            if (data !== null) {
+                const translateData = Object.values(data);
+                const cuti= Object.values(translateData)
+                setListCuti(cuti);
+            }
+        })
+    },[])
+
+    const bgStatus = ["transparent","green","red"];
+    const cutiStatus = ["progress","success","failed"];
 
     onCuti2 = () => {
         props.navigation.navigate('Cuti2')
@@ -40,14 +61,21 @@ const Cuti = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ marginVertical: 6, width: "100%" }}>
-                                <TouchableOpacity onPress={() => { onCuti3() }}>
-                                    <View style={{ width: "100%", height: 50, flexDirection: "row", alignItems: "center", backgroundColor: "#dfe4ea", borderRadius: 15 }}>
-                                        <Text style={{ fontSize: 18 }}> 13-10-2020 </Text>
-                                        <Text style={{ fontSize: 18 }}> - </Text>
-                                        <Text style={{ fontSize: 18 }}> 16-10-2020, </Text>
-                                        <Text style={{ fontSize: 18 }}> waiting, </Text>
-                                    </View>
-                                </TouchableOpacity>
+                                {listCuti.map((data,index)=>{
+                                    return(
+                                        <TouchableOpacity onPress={() => { props.navigation.navigate("Cuti3",{detail:data}) }}>
+                                        <View style={{marginTop:3, width: "100%", height: 50, flexDirection: "row",justifyContent:"space-between", alignItems: "center", backgroundColor: "#dfe4ea", borderRadius: 15,paddingHorizontal:8 }}>
+                                            <Text style={{ fontSize: 18 }}> {data.tgl}</Text>
+                                            <Text style={{ fontSize: 18 }}> - </Text>
+                                            <Text style={{ fontSize: 18 }}> {cutiStatus[data.status]} </Text>
+                                            <View style={{height:15,width:15,backgroundColor:bgStatus[data.status],borderRadius:10}}>
+
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                    )
+                                })}
+                               
                             </View>
                         </View>
 

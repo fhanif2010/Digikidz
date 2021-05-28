@@ -37,7 +37,7 @@ const HistoryTask = (props) => {
                     <View style={{ height: 150 }}>
                         <View style={{ paddingTop: "10%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>HISTORY</Text>
-                            <Text style={{ fontSize: 15, color: "white" }}>Faisal Hanif</Text>
+                            <Text style={{ fontSize: 15, color: "white" }}>{name}</Text>
                         </View>
                     </View>
 

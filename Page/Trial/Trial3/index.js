@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
@@ -10,21 +10,39 @@ import {
     TouchableOpacity
 } from "react-native";
 
-import { FlatList,  } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import db from "../../../Config/index";
+import { useSelector, useDispatch } from 'react-redux';
 
 const Trial3 = (props) => {
+
+    const name = useSelector(state => state.AuthReducer.name);
+    const time = new Date();
+    const timeNow = time.toDateString();
+    const params = props.route.params.detail;
+    const [state, setState] = useState({
+        name: "", program: "", level: "", gender: "", age: "", note: "",time: timeNow
+    })
+
     onTrial = () => {
         this.props.navigation.navigate('Trial')
     }
     onTrial2 = () => {
         this.props.navigation.navigate('Trial2')
     }
-    {
+    
+    useEffect(()=>{
+        console.log(params)
+        setState((prev)=>({...prev,
+            name:params.name,
+            program:params.program,
+            level:params.level,
+            gender:params.gender,
+            age:params.age,
+            note:params.note,
+            time:params.time,
+        }))
+    },[])
+
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
             <KeyboardAvoidingView behavior="height">
@@ -33,6 +51,7 @@ const Trial3 = (props) => {
                     <View style={{ width: "100%", height: 150 }}>
                         <View style={{ paddingTop: "10%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>TRIAL</Text>
+                            <Text style={{ fontSize: 20, color: "white" }}>{state.time}</Text>
                         </View>
                     </View>
                 </View>
@@ -44,41 +63,31 @@ const Trial3 = (props) => {
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}> Pesta </TextInput>
+                                <TextInput editable={false} style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", color: "black" }}>{state.name} </TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Program</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}> GameDevelopment </TextInput>
+                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", color: "black" }}>{state.program}  </TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Level</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}> Construc2 </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", color: "black" }}>{state.level}  </TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Gender</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}> Boy </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" , color: "black" }}>{state.gender}</TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Age</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}> 13 </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" , color: "black" }}>{state.age}</TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}> Mampu mengikuti arahan yang diberikan, mampu menyelesaikan challenge yang diberikan </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" , color: "black" }}>{state.note} </TextInput>
                             </View>
-
-                            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30}}>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { onTrial2() }}>
-                                        <View style={{ alignItems: "center", marginVertical: 11 }}>
-                                            <Text style={{ color: "white" }}>Delete</Text>
-                                        </View>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { onTrial() }}>
-                                        <View style={{ alignItems: "center", marginVertical: 11 }}>
-                                            <Text style={{ color: "white" }}>Upload</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                            <View>
+                                <Text style={{ fontSize: 20, color: "orange" }}>Status</Text>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" , color: "black" }}>{state.age}</TextInput>
                             </View>
                         </View>
                     
@@ -88,6 +97,6 @@ const Trial3 = (props) => {
         </View >
         )
     }
-}
+
 
 export default Trial3;

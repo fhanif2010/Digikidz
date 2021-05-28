@@ -18,6 +18,10 @@ import {
 
 const Cuti3 = (props) => {
 
+const detail=props.route.params.detail;
+console.log(detail);
+
+
     onTrial = () => {
         props.navigation.navigate('Trial')
     }
@@ -26,6 +30,7 @@ const Cuti3 = (props) => {
     }
     {
         return (
+            
             <View style={{ flex: 1, backgroundColor: "orange" }}>
             <KeyboardAvoidingView behavior="height">
 
@@ -43,42 +48,33 @@ const Cuti3 = (props) => {
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>Faisal Hanif</TextInput>
+                                <TextInput
+                                defaultValue={detail.name}
+                                style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }} />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Position</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>Teacher</TextInput>
+                                <TextInput 
+                                defaultValue={detail.position}
+                                style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}/>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Start - End</Text>
                                 <View style={{ justifyContent: "space-around", flexDirection: "row", width: "100%"}}>
-                                <TextInput style={{ width: "47%",borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>13-10-2020</TextInput>
+                                <TextInput style={{ width: "47%",borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>{detail.start}</TextInput>
                                 <Text style={{ fontSize: 20, color: "orange" }}>-</Text>
-                                <TextInput style={{ width: "47%", borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>16-10-2020</TextInput>
+                                <TextInput style={{ width: "47%", borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}>{detail.end}</TextInput>
                                 </View>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Neccessity</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}> Keperluan Acara keluarga  </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}>{detail.neccessity} </TextInput>
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}> Waiting - ...  </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}> {detail.note} </TextInput>
                             </View>
 
-                            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30}}>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTrial2() }}>
-                                        <View style={{ alignItems: "center", marginVertical: 11 }}>
-                                            <Text style={{ color: "white" }}>Clear</Text>
-                                        </View>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTrial() }}>
-                                        <View style={{ alignItems: "center", marginVertical: 11 }}>
-                                            <Text style={{ color: "white" }}>Upload</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                            </View>
                         </View>
                 </View>
                 </ScrollView>

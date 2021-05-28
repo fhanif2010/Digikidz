@@ -24,7 +24,7 @@ const Task = (props) => {
     const name = useSelector(state => state.AuthReducer.name);
     const time = new Date();
     const timeNow = time.toDateString();
-    const uid = useSelector(state => state.AuthReducer.uid);
+
 
     const [listTask, setListTask] = useState([]);
     const [history, setHistory] = useState({});

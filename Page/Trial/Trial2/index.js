@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
     View,
     Text,
@@ -10,14 +10,33 @@ import {
     TouchableOpacity
 } from "react-native";
 
-import { FlatList,  } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import db from "../../../Config/index";
+import { useSelector } from 'react-redux';
 
 const Trial2 = (props) => {
+
+    const name = useSelector(state => state.AuthReducer.name);
+    const time = new Date();
+    const timeNow = time.toDateString();
+    const id = time.getTime();
+    const [state, setState] = useState({
+        name: "", program: "", level: "", gender: "", age: "", note: "", id: id,time: timeNow
+    })
+
+    const onsave = async () => {
+        console.log(state)
+        db.database().ref('trial_progres')
+            .child(`${timeNow}`)
+            .child(`${name}`)
+            .child(`${state.id}`)
+            .set(state)
+            .then(()=>{
+                        props.navigation.navigate('Trial')
+                    })
+            .catch((error) => {
+                alert(error)
+            })
+    }
 
     onTrial = () => {
         props.navigation.navigate('Trial')
@@ -45,27 +64,39 @@ const Trial2 = (props) => {
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}></TextInput>
+                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, name: text })}
+                                />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Program</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}></TextInput>
+                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, program: text })}
+                                />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Level</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}></TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, level: text })}
+                                />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Gender</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}></TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, gender: text })}
+                                />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Age</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}></TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, age: text })}
+                              />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}> </TextInput>
+                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, note: text })}
+                                />
                             </View>
 
                             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30}}>
@@ -75,7 +106,7 @@ const Trial2 = (props) => {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { onTrial() }}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onsave}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Upload</Text>
                                         </View>
