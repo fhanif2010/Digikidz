@@ -2,16 +2,11 @@ import React from "react";
 import {
     View,
     Text,
-    TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     TouchableOpacity
 } from "react-native";
 import {
-    faArrowAltCircleLeft,
     faPlus,
-
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
@@ -19,8 +14,8 @@ const UserList = (props) => {
     onAdminProfil = () => {
         props.navigation.navigate('AdminProfil')
     }
-    onHome = () => {
-        props.navigation.navigate('Home')
+    onAddUser = () => {
+        props.navigation.navigate('AddUser')
     }
     {
         return (
@@ -28,9 +23,9 @@ const UserList = (props) => {
                 <KeyboardAvoidingView behavior="height">
                     <View style={ styles.header}>
                         <View style={ styles.header.Logo }>
-                            <Text style={ styles.header.Logo.Text }>Karyawan</Text>
+                            <Text style={ styles.header.Logo.Text }>User List</Text>
                         </View>
-                        <TouchableOpacity style={ styles.header.btn}  onPress={() => { onHome() }}>
+                        <TouchableOpacity style={ styles.header.btn}  onPress={() => { onAddUser() }}>
                             <View style={ styles.header.btn.Text }>
                                 <View>
                                     <FontAwesomeIcon icon={faPlus} size={20} color="white" />
@@ -72,13 +67,13 @@ const styles= {
     },
     header: {
         width: "100%",
-        height: 150,
+        height: 100,
         backgroundColor: "orange",
         borderBottomRightRadius: 50,
         borderBottomLeftRadius: 50,
 
             Logo: {
-                paddingTop: "10%", 
+                paddingTop: "5%", 
                 alignItems: "center",
 
                  Text: {
@@ -90,7 +85,7 @@ const styles= {
                 width: "60%", 
                 height: 45, 
                 borderRadius: 25, 
-                marginTop: 45, 
+                marginTop: 10, 
                 marginHorizontal: "20%", 
                 backgroundColor: "#a55eea",
 

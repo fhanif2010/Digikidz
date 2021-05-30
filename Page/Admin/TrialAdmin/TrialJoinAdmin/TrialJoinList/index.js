@@ -3,23 +3,10 @@ import {
     View,
     Text,
     KeyboardAvoidingView,
-    TouchableOpacity
 } from "react-native";
 
 
-const CutiApprove = (props) => {
-
-
-    onCutiNameList = () => {
-        props.navigation.navigate('CutiNameList')
-    }
-    onHistoty3 = () => {
-        props.navigation.navigate('History3')
-    }
-    onTask3 = () => {
-        props.navigation.navigate('Task3')
-    }
-
+const TrialJoinList = (props) => {
 
     {
         return (
@@ -27,17 +14,19 @@ const CutiApprove = (props) => {
                 <KeyboardAvoidingView behavior="height">
                     <View style={{ height: 100 }}>
                         <View style={{ paddingTop: "7%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 30, color: "white" }}>Cuti Approve</Text>
+                            <Text style={{ fontSize: 30, color: "white" }}>Cuti Join List</Text>
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
                         <View style={{ marginTop: 20, marginHorizontal: 20, }}>
-                            <TouchableOpacity onPress={() => { onCutiNameList() }} >
-                                <View style={styles.form.Textarea}>
-                                    <Text style={styles.form.Textarea.Text}> Faisal Hanif </Text>
-                                    <Text style={styles.form.Textarea.Text}> Teacher </Text>
-                                </View>
-                            </TouchableOpacity>
+                            <View style={{ marginTop: 10, width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
+                            <Text> Name = </Text>
+                                <Text> Program =  </Text>
+                                <Text> Level = </Text>
+                                <Text> Gender = </Text>
+                                <Text> Age =  </Text>
+                                <Text> Note =   </Text>
+                            </View>
                         </View>
                     </View>
                 </KeyboardAvoidingView>
@@ -46,9 +35,7 @@ const CutiApprove = (props) => {
     }
 }
 
-
-export default CutiApprove;
-
+export default TrialJoinList;
 
 const styles = {
     form: {
@@ -60,7 +47,7 @@ const styles = {
             height: 50,
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             backgroundColor: "#dfe4ea",
             paddingHorizontal: 15,
             marginTop: 6,

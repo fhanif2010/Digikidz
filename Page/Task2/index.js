@@ -10,20 +10,11 @@ import {
     TouchableOpacity
 } from "react-native";
 import db from '../../Config/index';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from 'react-redux';
-
 
 const Task2 = (props) => {
 
-
-
     const name = useSelector(state => state.AuthReducer.name);
-
     const time = new Date();
     const timeNow = time.toDateString();
     const id = time.getTime();
@@ -61,24 +52,24 @@ const Task2 = (props) => {
             <KeyboardAvoidingView behavior="height">
 
                 <View>
-                    <View style={{ width: "100%", height: "15%" }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 35, color: "white" }}>TASK</Text>
+                    <View style={{ width: "100%", height: 100 }}>
+                        <View style={{ paddingTop: "9%", alignItems: "center" }}>
+                            <Text style={{ fontSize: 30, color: "white" }}>Formulir Task</Text>
                         </View>
                     </View>
                 </View>
 
                 <ScrollView>
                     <View style={{ backgroundColor: "white", borderTopStartRadius: 20, borderTopEndRadius: 20 }}>
-                        <View style={{ marginTop: 20, marginHorizontal: "5%", height: 745 }}>
-                            <View style={{ marginBottom: "2%"}}>
+                        <View style={{ marginTop: 20, marginHorizontal: "5%", height: 700 }}>
+                            <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
                                 <TextInput
                                     style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                     onChangeText={(text) => setState({ ...state, name: text })}
                                 />
                             </View>
-                            <View style={{ marginBottom: "2%"}}>
+                            <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Program</Text>
                                 <TextInput
                                     style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
@@ -86,7 +77,7 @@ const Task2 = (props) => {
 
                                 />
                             </View>
-                            <View style={{ marginBottom: "2%"}}>
+                            <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Level</Text>
                                 <TextInput
                                     style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
@@ -94,14 +85,14 @@ const Task2 = (props) => {
 
                                 />
                             </View>
-                            <View style={{ marginBottom: "2%"}}>
+                            <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Status</Text>
                                 <TextInput style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                     onChangeText={(text) => setState({ ...state, status: text })}
 
                                 />
                             </View>
-                            <View style={{ marginBottom: "2%"}}>
+                            <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Time</Text>
                                 <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
                                     <TextInput style={{ borderRadius: 15, borderWidth: 1, height: 36, width: "47%", borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}

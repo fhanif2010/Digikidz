@@ -79,13 +79,14 @@ const Task = (props) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: "orange" }}>
-            <View style={{ height: 150 }}>
-                <View style={{ paddingTop: "10%", alignItems: "center" }}>
+            <KeyboardAvoidingView behavior="height">
+            <View style={{ height: 100 }}>
+                <View style={{ paddingTop: "7%", alignItems: "center" }}>
                     <Text style={{ fontSize: 35, color: "white" }}>TASK</Text>
                 </View>
             </View>
 
-            <View style={{ backgroundColor: "white", width: "100%", minHeight: 600, borderTopStartRadius: 40, borderTopEndRadius: 40, paddingTop: 50, paddingBottom: 200 }}>
+            <View style={{ backgroundColor: "white", width: "100%", minHeight: 610, borderTopStartRadius: 40, borderTopEndRadius: 40, paddingTop: 20, paddingBottom: 10 }}>
                 <ScrollView >
                     {listTask.map((anjing, index) => {
                         return (
@@ -111,12 +112,12 @@ const Task = (props) => {
                 </ScrollView>
             </View>
 
-            <View style={{ alignItems: "center", marginTop: 10, position: "absolute", right: 20, top: 600 }}>
+            <View style={{ alignItems: "center", marginTop: 10, position: "absolute", right: 20, top: 500 }}>
                 <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { onTask2() }}>
                     <FontAwesomeIcon icon={faPlus} size={35} />
                 </TouchableOpacity>
             </View>
-
+            </KeyboardAvoidingView>
         </View >
     )
 

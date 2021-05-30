@@ -34,15 +34,15 @@ const HistoryTask = (props) => {
             <View style={{ flex: 1, backgroundColor: "orange" }}>
                 {console.log(listTask)}
                 <KeyboardAvoidingView behavior="height">
-                    <View style={{ height: 150 }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
+                    <View style={{ height: 120 }}>
+                        <View style={{ paddingTop: "5%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>HISTORY</Text>
-                            <Text style={{ fontSize: 15, color: "white" }}>{name}</Text>
+                            <Text style={{ fontSize: 20, color: "white" }}>{name}</Text>
                         </View>
                     </View>
 
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        <View style={{ marginTop: 40, marginHorizontal: 20 }}>
+                        <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                             <FlatList
                                 data={listTask}
                                 renderItem={({ item }) => {

@@ -19,12 +19,12 @@ import Cuti3 from "../Page/Cuti/Cuti3/index";
 import History from "../Page/History/index";
 import HistoryName from "../Page/History/HistoryName/index";
 import HistoryTask from "../Page/History/HistoryTask/index";
-import HistoryTask2 from "../Page/History/HistoryTask2/index";
 
 import HomeAdmin from "../Page/Admin/HomeAdmin/index";
 import UserList from "../Page/Admin/User List/index";
 import AdminProfil from "../Page/Admin/User List/AdminProfil/index";
 import EditProfil from "../Page/Admin/User List/EditProfil/index";
+import AddUser from "../Page/Admin/User List/AddUser/index";
 
 import TaskAdmin from "../Page/Admin/TaskAdmin/index";
 import TaskAdmin2 from "../Page/Admin/TaskAdmin/TaskAdmin2/index";
@@ -34,16 +34,17 @@ import TrialAdmin from "../Page/Admin/TrialAdmin/index";
 import TrialProgres from "../Page/Admin/TrialAdmin/TrialProgresAdmin/index";
 import TrialProgresTeacher from "../Page/Admin/TrialAdmin/TrialProgresAdmin/TrialProgresTeacher/index";
 import TrialJoin from "../Page/Admin/TrialAdmin/TrialJoinAdmin/index";
+import TrialJoinList from "../Page/Admin/TrialAdmin/TrialJoinAdmin/TrialJoinList/index";
 import TrialCancel from "../Page/Admin/TrialAdmin/TrialCancelAdmin/index";
+import TrialCancelList from "../Page/Admin/TrialAdmin/TrialCancelAdmin/TrialCancelList/index";
 
 import CutiAdmin from "../Page/Admin/CutiAdmin/index";
 import CutiProgres from "../Page/Admin/CutiAdmin/CutiProgres/index";
 import CutiApprove from "../Page/Admin/CutiAdmin/CutiApprove/index";
 import CutiRejected from "../Page/Admin/CutiAdmin/CutiRejected/index";
+import CutiRejectedList from "../Page/Admin/CutiAdmin/CutiRejected/CutiRejectedList/index";
 import CutiProses from "../Page/Admin/CutiAdmin/CutiProgres/CutiProses/index";
-import CutiApproveList from "../Page/Admin/CutiAdmin/CutiApprove/CutiApproveList/index";
 import CutiNameList from "../Page/Admin/CutiAdmin/CutiApprove/CutiNameList/index";
-import CutiNameContent from "../Page/Admin/CutiAdmin/CutiApprove/CutiNameContent/index";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -106,8 +107,6 @@ function Navigation() {
           options={{ headerShown: false }} />
         <Stack.Screen name="HistoryTask" component={HistoryTask}
           options={{ headerShown: false }} />
-        <Stack.Screen name="HistoryTask2" component={HistoryTask2}
-          options={{ headerShown: false }} />
 
 
         {/* Admin */}
@@ -119,6 +118,8 @@ function Navigation() {
         <Stack.Screen name="AdminProfil" component={AdminProfil}
           options={{ headerShown: false }} />
         <Stack.Screen name="EditProfil" component={EditProfil}
+          options={{ headerShown: false }} />
+          <Stack.Screen name="AddUser" component={AddUser}
           options={{ headerShown: false }} />
 
         <Stack.Screen name="TaskAdmin" component={TaskAdmin}
@@ -135,7 +136,11 @@ function Navigation() {
           options={{ headerShown: false }} />
           <Stack.Screen name="TrialJoin" component={TrialJoin}
           options={{ headerShown: false }} />
+          <Stack.Screen name="TrialJoinList" component={TrialJoinList}
+          options={{ headerShown: false }} />
           <Stack.Screen name="TrialCancel" component={TrialCancel}
+          options={{ headerShown: false }} />
+          <Stack.Screen name="TrialCancelList" component={TrialCancelList}
           options={{ headerShown: false }} />
           <Stack.Screen name="TrialProgresTeacher" component={TrialProgresTeacher}
           options={{ headerShown: false }} />
@@ -148,13 +153,11 @@ function Navigation() {
           options={{ headerShown: false }} />
         <Stack.Screen name="CutiRejected" component={CutiRejected}
           options={{ headerShown: false }} />
+          <Stack.Screen name="CutiRejectedList" component={CutiRejectedList}
+          options={{ headerShown: false }} />
         <Stack.Screen name="CutiProses" component={CutiProses}
           options={{ headerShown: false }} />
-        <Stack.Screen name="CutiApproveList" component={CutiApproveList}
-          options={{ headerShown: false }} />
         <Stack.Screen name="CutiNameList" component={CutiNameList}
-          options={{ headerShown: false }} />
-        <Stack.Screen name="CutiNameContent" component={CutiNameContent}
           options={{ headerShown: false }} />
 
 

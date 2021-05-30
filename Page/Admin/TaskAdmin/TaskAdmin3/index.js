@@ -49,19 +49,20 @@ const TaskAdmin3 = (props) => {
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
                 <KeyboardAvoidingView behavior="height">
-                    <View style={{ height: 150 }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 35, color: "white" }}>Task</Text>
+                    <View style={{ height: 120 }}>
+                        <View style={{ paddingTop: "7%", alignItems: "center" }}>
+                            <Text style={{ fontSize: 25, color: "white" }}>Task</Text>
+                            <Text style={{ fontSize: 20, color: "white" }}>{name}</Text>
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        <View style={{ marginTop: 40, marginHorizontal: 20, }}>
+                        <View style={{ marginTop: 20, marginHorizontal: 20, }}>
                             <FlatList
                                 data={listTask}
                                 renderItem={({ item }) => {
                                     return (
                                         <TouchableOpacity >
-                                            <View style={{width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
+                                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
                                                 <Text> Name = {item.name}</Text>
                                                 <Text> Program = {item.program}</Text>
                                                 <Text> Level = {item.level}</Text>

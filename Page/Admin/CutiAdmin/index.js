@@ -2,22 +2,14 @@ import React from "react";
 import {
     View,
     Text,
-    TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
-    ScrollView,
     TouchableOpacity 
 } from "react-native";
 
-import { FlatList, } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
 
 const CutiAdmin = (props) => {
+
+
     onCutiProgres = () => {
         props.navigation.navigate('CutiProgres')
     }
@@ -27,17 +19,19 @@ const CutiAdmin = (props) => {
     onCutiRejected = () => {
         props.navigation.navigate('CutiRejected')
     }
+
+
     {
         return (
             <View style={{ flex: 1, backgroundColor: "orange"  }}>
                 <KeyboardAvoidingView behavior="height">
-                    <View style={{ height: 150 }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
+                    <View style={{ height: 100 }}>
+                        <View style={{ paddingTop: "7%", alignItems: "center" }}>
                             <Text style={{ fontSize: 30, color: "white" }}>Cuti Karyawan</Text>
                         </View>
                     </View>
                 <View style={{ backgroundColor: "white", width: "100%", height: "100%",  borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                <View style={{ marginTop: 40, marginHorizontal: 20,}}>
+                <View style={{ marginTop: 20, marginHorizontal: 20,}}>
                         <TouchableOpacity onPress={() => { onCutiProgres()  }} >
                             <View style={ styles.form.Textarea}>
                                 <Text style={ styles.form.Textarea.Text}> Progres </Text>
@@ -57,14 +51,15 @@ const CutiAdmin = (props) => {
                         </TouchableOpacity>
                     </View>
                     </View>
-
                 </KeyboardAvoidingView>
             </View >
         )
     }
 }
 
+
 export default CutiAdmin;
+
 
 const styles= {
 form: {

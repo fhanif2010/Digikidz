@@ -8,32 +8,23 @@ import {
     Button,
     Image,
     KeyboardAvoidingView,
-
 } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import {
     faUserCircle,
     faKey,
-
 } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch,useSelector } from 'react-redux';
 
-
-
 const Login = (props) => {
-
- 
 
     const dispatch = useDispatch();
     const [state,setState] = useState({username:'',password:''})
 
-
     const _onLogin = async () => {
-
         db.auth()
             .signInWithEmailAndPassword(state.username, state.password.toLowerCase())
             .then(async (data) => {
-
                 console.log(data)
 
                 db.firestore()
@@ -80,8 +71,8 @@ const Login = (props) => {
                 {/*USERNAME - PASSWORD*/}
                 <View style={{ marginHorizontal: 30, marginTop: 70, }}>
                     <View>
-                        <Text style={styles.container.text}>USERNAME</Text>
-                        <View style={{ flexDirection: 'row', marginTop: 15, }}>
+                        <Text style={styles.container.text}>Username</Text>
+                        <View style={{ flexDirection: 'row', marginTop: 15 }}>
                             <FontAwesomeIcon icon={faUserCircle} size={29} style={{ marginRight: 15 }} />
                             <View style={{ marginTop: -8 }}>
                                 <TextInput placeholder="Your Username"

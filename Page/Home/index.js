@@ -1,5 +1,9 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Button, BackHandler } from "react-native";
+import { 
+    View, 
+    Text, 
+    TouchableOpacity
+} from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
     faUser,
@@ -15,6 +19,7 @@ const Home = (props) => {
     const name = useSelector(state => state.AuthReducer.name);
     const posisi = useSelector(state => state.AuthReducer.posisi);
     const dispatch = useDispatch();
+    
     const onLogout = async () => {
         await dispatch({ type: 'LOGOUT' });
         props.navigation.navigate('Login')
@@ -37,7 +42,7 @@ const Home = (props) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: "orange" }}>
-            <View style={{ width: "100%", height: "25%", }}>
+            <View style={{ width: "100%", height: "22%", }}>
                 <View style={{ paddingTop: "10%", paddingLeft: "10%" }}>
                     <Text style={{ fontSize: 35, color: "white" }}>{name}</Text>
                     <Text style={{ fontSize: 15, color: "white" }}>{posisi}</Text>

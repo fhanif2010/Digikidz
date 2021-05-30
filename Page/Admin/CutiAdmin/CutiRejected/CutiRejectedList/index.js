@@ -10,30 +10,16 @@ import {
     TouchableOpacity 
 } from "react-native";
 
-import { FlatList, } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-    faArrowAltCircleLeft,
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
 
-const CutiNameList = (props) => {
-    onCutiNameContent = () => {
-        props.navigation.navigate('CutiNameContent')
-    }
-    onHistoty3 = () => {
-        props.navigation.navigate('History3')
-    }
-    onTask3 = () => {
-        props.navigation.navigate('Task3')
-    }
+const CutiRejectedList = (props) => {
+
     {
         return (
             <View style={{ flex: 1, backgroundColor: "orange"  }}>
                 <KeyboardAvoidingView behavior="height">
                     <View style={{ height: 100 }}>
                         <View style={{ paddingTop: "7%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 30, color: "white" }}>Cuti List</Text>
+                            <Text style={{ fontSize: 30, color: "white" }}>Cuti Rejected List</Text>
                         </View>
                     </View>
                 <View style={{ backgroundColor: "white", width: "100%", height: "100%",  borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
@@ -55,7 +41,7 @@ const CutiNameList = (props) => {
     }
 }
 
-export default CutiNameList;
+export default CutiRejectedList;
 
 const styles= {
 form: {

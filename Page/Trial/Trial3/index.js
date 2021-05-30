@@ -59,7 +59,7 @@ const Trial3 = (props) => {
                 <ScrollView>
                 <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40, height: 800 }}>
                     
-                        <View style={{ marginTop: 40, marginHorizontal: 20,  }}>
+                        <View style={{ marginTop: 20, marginHorizontal: "5%",  }}>
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>

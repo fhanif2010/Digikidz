@@ -2,9 +2,6 @@ import React,{useEffect, useState} from "react";
 import {
     View,
     Text,
-    TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity
@@ -51,7 +48,7 @@ const Trial = (props) => {
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
                 <KeyboardAvoidingView behavior="height">
-                    <View style={{ height: 150 }}>
+                    <View style={{ height: 100 }}>
                         <View style={{ paddingTop: "10%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>TRIAL</Text>
                         </View>
@@ -59,12 +56,9 @@ const Trial = (props) => {
 
 
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        <View style={{ alignItems: "center", marginTop: 10, position: "absolute", right: 20, top: 450 }}>
-                            <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { onTrial2() }}>
-                                <FontAwesomeIcon icon={faPlus} size={35} />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ marginTop: 40, marginHorizontal: 20 }}>
+                        
+
+                        <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                             <ScrollView>
                             {listTrial.map((data, index) => {
                         return (
@@ -85,7 +79,11 @@ const Trial = (props) => {
                         </View>
 
                     </View>
-
+                    <View style={{ alignItems: "center", position: "absolute", right: 20, top: 500 }}>
+                            <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { onTrial2() }}>
+                                <FontAwesomeIcon icon={faPlus} size={35} />
+                            </TouchableOpacity>
+                        </View>
                 </KeyboardAvoidingView>
             </View >
         )

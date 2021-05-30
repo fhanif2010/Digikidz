@@ -21,7 +21,7 @@ const Profil = () => {
             <View style={{ width: "100%", height: 150, backgroundColor: "orange", borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }}>
                 <View style={{ paddingTop: "10%", alignItems: "center" }}>
                     <Text style={{ fontSize: 35, color: "white" }}>{name}</Text>
-                    <Text style={{ fontSize: 15, color: "white" }}>{posisi}</Text>
+                    <Text style={{ fontSize: 20, color: "white" }}>{posisi}</Text>
                 </View>
             </View>
 
@@ -42,19 +42,19 @@ const Profil = () => {
 
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Email</Text>
-                        <Text style={{ fontSize: 20, borderBottomWidth: 1 }}>{email}</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{email}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>No. Phone</Text>
-                        <Text style={{ fontSize: 20, borderBottomWidth: 1 }}>{numberPhone}</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{numberPhone}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Address</Text>
-                        <Text style={{ fontSize: 20, borderBottomWidth: 1 }}>{address}</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{address}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Date of Birth</Text>
-                        <Text style={{ fontSize: 20, borderBottomWidth: 1 }}>{dob}</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{dob}</Text>
                     </View>
                 </View>
             </View>

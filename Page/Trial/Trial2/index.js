@@ -50,17 +50,17 @@ const Trial2 = (props) => {
             <KeyboardAvoidingView behavior="height">
 
                 <View>
-                    <View style={{ width: "100%", height: 150 }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 35, color: "white" }}>TRIAL</Text>
+                <View style={{ width: "100%", height: 100 }}>
+                        <View style={{ paddingTop: "9%", alignItems: "center" }}>
+                            <Text style={{ fontSize: 30, color: "white" }}>Formulir Trial</Text>
                         </View>
                     </View>
                 </View>
 
                 <ScrollView>
-                <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40, height: 800 }}>
+                <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40, height: 720 }}>
                     
-                        <View style={{ marginTop: 40, marginHorizontal: 20, }}>
+                        <View style={{ marginTop: 20, marginHorizontal: "5%", }}>
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>

@@ -54,14 +54,14 @@ const Task3 = (props) =>{
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
                 <View>
-                    <View style={{ width: "100%", height: 150 }}>
-                        <View style={{ paddingTop: "10%", alignItems: "center" }}>
+                    <View style={{ width: "100%", height: 100 }}>
+                        <View style={{ paddingTop: "7%", alignItems: "center" }}>
                             <Text style={{ fontSize: 35, color: "white" }}>TASK</Text>
                         </View>
                     </View>
                     <ScrollView >
                         <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40}}>
-                                <View style={{ marginTop: 40, marginHorizontal: 20 , height: 800}}>
+                                <View style={{ marginTop: 20, marginHorizontal: "5%" , height: 700}}>
                                     <View>
                                         <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
                                         <TextInput style={{ borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", borderRadius: 15 }}
@@ -97,11 +97,12 @@ const Task3 = (props) =>{
                                     <View>
                                         <Text style={{ fontSize: 20, color: "orange" }}>Time</Text>
                                         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-                                            <TextInput style={{ borderWidth: 1, height: 36, width: 160, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", borderRadius: 15 }}
+                                            <TextInput style={{ borderWidth: 1, height: 36, width: "47%", borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", borderRadius: 15 }}
                                               onChangeText={(text) => setState({ ...state,time1: text })}
                                               value={state.time1}
                                             ></TextInput>
-                                            <TextInput style={{ borderWidth: 1, height: 36, width: 160, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", borderRadius: 15 }}
+                                            <Text>-</Text>
+                                            <TextInput style={{ borderWidth: 1, height: 36, width: "47%", borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd", borderRadius: 15 }}
                                             onChangeText={(text) => setState({ ...state,time2: text })}
                                             value={state.time2}
                                             ></TextInput>

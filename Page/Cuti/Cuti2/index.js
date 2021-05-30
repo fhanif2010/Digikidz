@@ -101,8 +101,8 @@ const Cuti2 = (props) => {
 onTrial = () => {
     this.props.navigation.navigate('Trial')
 }
-onTrial2 = () => {
-    this.props.navigation.navigate('Trial2')
+onCuti2 = () => {
+    props.navigation.navigate('Cuti2')
 }
 
 
@@ -173,16 +173,15 @@ return (
 
 
             <View>
-                <View style={{ width: "100%", height: 150 }}>
-                    <View style={{ paddingTop: "10%", alignItems: "center" }}>
+                <View style={{ width: "100%", height: 100 }}>
+                    <View style={{ paddingTop: "7%", alignItems: "center" }}>
                         <Text style={{ fontSize: 35, color: "white" }}>CUTI</Text>
                     </View>
                 </View>
             </View>
 
             <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                <ScrollView>
-                    <View style={{ marginTop: 40, marginHorizontal: 20, height: 800 }}>
+                    <View style={{ marginTop: 20, marginHorizontal: "5%", height: 700 }}>
 
                         <View>
                             <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
@@ -201,9 +200,9 @@ return (
                         <View>
                             <Text style={{ fontSize: 20, color: "orange" }}>Start - End</Text>
                             <View style={{ justifyContent: "space-around", flexDirection: "row", width: "100%" }}>
-                                <TouchableOpacity style={{ width: width * 0.45, height: 45, borderRadius: 25, backgroundColor: "#a55eea", }}
+                                <TouchableOpacity style={{ height: 36, width: "47%", borderRadius: 25, backgroundColor: "orange", }}
                                     onPress={() => { setModaldate({ ...modalDate, start: true }) }}>
-                                    <View style={{ alignItems: "center", marginVertical: 11 }}>
+                                    <View style={{ alignItems: "center", marginVertical: 7 }}>
                                         <Text style={{ color: "white", fontSize: width * 0.04 }}>
                                             <Text>
                                                 {cutiData.start.toLocaleDateString()}
@@ -212,9 +211,9 @@ return (
                                     </View>
                                 </TouchableOpacity>
                                 <Text style={{ fontSize: 20, color: "orange" }}>-</Text>
-                                <TouchableOpacity style={{ width: width * 0.45, height: 45, borderRadius: 25, backgroundColor: "#a55eea", }}
+                                <TouchableOpacity style={{ height: 36, width: "47%", borderRadius: 25, backgroundColor: "orange", }}
                                     onPress={() => { setModaldate({ ...modalDate, end: true }) }}>
-                                    <View style={{ alignItems: "center", marginVertical: 11 }}>
+                                    <View style={{ alignItems: "center", marginVertical: 7 }}>
                                         <Text style={{ color: "white", fontSize: width * 0.04 }}>
                                             <Text>
                                                 {cutiData.end.toLocaleDateString()}
@@ -233,7 +232,7 @@ return (
 
 
                         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                            <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTrial2() }}>
+                            <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onCuti2() }}>
                                 <View style={{ alignItems: "center", marginVertical: 11 }}>
                                     <Text style={{ color: "white" }}>Clear</Text>
                                 </View>
@@ -247,7 +246,6 @@ return (
                             </TouchableOpacity>
                         </View>
                     </View>
-                </ScrollView>
             </View>
 
         </KeyboardAvoidingView>
