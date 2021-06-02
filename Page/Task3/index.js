@@ -16,14 +16,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Task3 = (props) =>{
 
-    const name = useSelector(state => state.AuthReducer.name);
     const time = new Date();
     const timeNow = time.toDateString();
     const params = props.route.params.data;
-    const [state, setState] = useState({
+   
+ const [state, setState] = useState({
         name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id:params.id,time: params.time
     })
-
 
     const onDeleteTask = () =>{
         db.database().ref(`/task/${timeNow}/${name}/${state.id}`).remove()

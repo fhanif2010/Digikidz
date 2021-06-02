@@ -8,21 +8,25 @@ import {
 import db from "../../../../Config/index";
 
 
+
 const CutiProgres = (props) => {
     const [listCuti,setListCuti]=useState([])
 
 
+
     React.useEffect(()=>{
-        db.database().ref().child(`/cuti_progress`)
+        db.database().ref().child(`/cuti/`).orderByChild("status").equalTo(0)
         .on('value', (snapshoot) => {
             const data = snapshoot.val();
-            console.log(data)
             if (data !== null) {
                 const translateData = Object.values(data);
-                const cuti= Object.values(translateData)
-                setListCuti(cuti);
+                // listCuti(translateData)
+                setListCuti(translateData)
+
             }
         })
+
+
     },[])
 
 
@@ -39,6 +43,7 @@ const CutiProgres = (props) => {
 
     {
         return (
+            
             <View style={{ flex: 1, backgroundColor: "orange"  }}>
                 <KeyboardAvoidingView behavior="height">
                     <View style={{ height: 100 }}>

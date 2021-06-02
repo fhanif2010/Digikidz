@@ -13,22 +13,24 @@ import {
     faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import db from "../../Config/index";
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
 const Cuti = (props) => {
 
-    const [listCuti,setListCuti]=useState([])
+    const [listCuti,setListCuti]=useState([]);
+    const id = useSelector(state => state.AuthReducer.uid);
+
+
 
     React.useEffect(()=>{
-        db.database().ref().child(`/cuti_progress`)
+        db.database().ref().child(`/cuti`).orderByChild("kode").equalTo(id)
         .on('value', (snapshoot) => {
             const data = snapshoot.val();
-            console.log(data)
             if (data !== null) {
                 const translateData = Object.values(data);
-                const cuti= Object.values(translateData)
-                setListCuti(cuti);
+                setListCuti(translateData);
             }
         })
     },[])

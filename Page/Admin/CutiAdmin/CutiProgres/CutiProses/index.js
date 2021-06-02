@@ -7,11 +7,70 @@ import {
     ScrollView,
     TouchableOpacity
 } from "react-native";
-
+import db from "../../../../../Config/index";
 
 const CutiProses = (props) => {
 
+    const time = new Date();
+    const timeNow = time.toDateString();
+
+
     const detail = props.route.params.detail;
+
+    const [note, setNote] = useState('');
+
+    const handelApprove = () => {
+        db.database().ref(`/cuti/${detail.id}`)
+            .update({
+                name: detail.name,
+                position: detail.position,
+                start: detail.start,
+                end: detail.end,
+                neccessity: detail.neccessity,
+                note: note,
+                id: detail.id,
+                range: detail.range,
+                status: 1,
+                tgl: detail.tgl,
+                kode: detail.kode
+            })
+            .then(()=>{
+                alert("Succes")
+            //     // db.database().ref().child(`/cuti/${detail.id}`).remove()
+
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+
+    }
+
+    const handelReject = () => {
+        db.database().ref(`/cuti/${detail.id}`)
+        .update({
+            name: detail.name,
+            position: detail.position,
+            start: detail.start,
+            end: detail.end,
+            neccessity: detail.neccessity,
+            note: note,
+            id: detail.id,
+            range: detail.range,
+            status: 2,
+            tgl: detail.tgl,
+            kode: detail.kode
+        })
+        .then(()=>{
+            alert("Succes")
+        //     // db.database().ref().child(`/cuti/${detail.id}`).remove()
+
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+
+
+    }
 
 
     onTrial = () => {
@@ -60,16 +119,18 @@ const CutiProses = (props) => {
                                 </View>
                                 <View>
                                     <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
-                                    <TextInput style={{ borderRadius: 15, borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}></TextInput>
+                                    <TextInput style={{ borderRadius: 15, borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}
+                                        onChangeText={(Text) => setNote(Text)}
+                                    ></TextInput>
                                 </View>
 
                                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTrial2() }}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={handelReject}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Rejected</Text>
                                         </View>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onTrial() }}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={handelApprove}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Approve</Text>
                                         </View>

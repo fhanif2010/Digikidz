@@ -27,14 +27,14 @@ const Cuti2 = (props) => {
     const timeNow = time.toDateString();
 
 
-    const [cutiData, setCutiData] = useState({ uid:id,name: name, position: posisi, start: new Date(), end: new Date(), neccessity: "", rangeDate: "", tgl: timeNow, status: "progress"})
+    const [cutiData, setCutiData] = useState({ uid: id, name: name, position: posisi, start: new Date(), end: new Date(), neccessity: "", rangeDate: "", tgl: timeNow, status: "progress" })
     const [modalDate, setModaldate] = useState({ start: false, end: false });
 
-    const [newDate, setNewDate] = useState(new Date())
 
 
 
-    const countRangeDate = () => {
+
+    const countRangeDate = async () => {
 
         const oneDay = 24 * 60 * 60 * 1000;
 
@@ -50,16 +50,13 @@ const Cuti2 = (props) => {
 
         const startDate = new Date(startYear, startMonth, startDay)
         const endDate = new Date(endYear, endMonth, endDay)
-        const diffDays = Math.round(Math.abs((startDate - endDate) / oneDay));
+        const diffDays =  Math.round(Math.abs((startDate - endDate) / oneDay));
         // const range = moment().range(startDate,endDate)
         if (startDate > endDate) {
             alert("Date is Not valid")
         }
-        else {
-            setCutiData({ ...cutiData, rangeDate: diffDays })
-        }
-
-        return;
+          
+        return diffDays;
 
 
 
@@ -67,22 +64,22 @@ const Cuti2 = (props) => {
 
 
     const onSubmit = async () => {
-        await countRangeDate();
-
-        await db.database().ref().child(`/cuti_progress/${time.getTime()}/`)
+        await countRangeDate()
+        .then((data)=>{
+            db.database().ref().child(`/cuti/${time.getTime()}/`)
             .set({
-                uid:id,
-                name:name,
-                id:time.getTime(),
-                start:cutiData.start.toLocaleDateString(),
-                end:cutiData.end.toLocaleDateString(),
-                neccessity:cutiData.neccessity,
-                status:cutiData.start,
-                range:cutiData.rangeDate.toString(),
-                tgl:cutiData.tgl,
-                position:posisi,
-                note:"",
-                status:0
+                kode: id,
+                name: name,
+                id: time.getTime(),
+                start: cutiData.start.toLocaleDateString(),
+                end: cutiData.end.toLocaleDateString(),
+                neccessity: cutiData.neccessity,
+                status: cutiData.start,
+                range: data.toString(),
+                tgl: cutiData.tgl,
+                position: posisi,
+                note: "",
+                status: 0
 
             })
             .then(() => {
@@ -93,94 +90,96 @@ const Cuti2 = (props) => {
             .catch((error) => {
                 alert(error)
             })
+        })
+       
 
 
     }
 
 
-onTrial = () => {
-    this.props.navigation.navigate('Trial')
-}
-onCuti2 = () => {
-    props.navigation.navigate('Cuti2')
-}
+    onTrial = () => {
+        this.props.navigation.navigate('Trial')
+    }
+    onCuti2 = () => {
+        props.navigation.navigate('Cuti2')
+    }
 
 
-const onChangeDateStart = async (e, ctx) => {
-    setCutiData({ ...cutiData, start: ctx })
-    setModaldate({ ...modalDate, start: false })
-}
+    const onChangeDateStart = async (e, ctx) => {
+        setCutiData({ ...cutiData, start: ctx })
+        setModaldate({ ...modalDate, start: false })
+    }
 
-const onChangeDateEnd = async (e, ctx) => {
+    const onChangeDateEnd = async (e, ctx) => {
 
-    await setCutiData({ ...cutiData, end: ctx })
-    await setModaldate({ ...modalDate, end: false })
+        await setCutiData({ ...cutiData, end: ctx })
+        await setModaldate({ ...modalDate, end: false })
 
-}
-
-
-
-return (
-    <View style={{ flex: 1, backgroundColor: "orange" }}>
-
-        <KeyboardAvoidingView behavior="height">
-
-            {
-                modalDate.start && (
-                    <DateTimePicker
-                        style={{ width: 0, height: 0 }}
-                        testID="dateTimePicker"
-                        value={new Date()}
-
-                        mode="date"
-                        is24Hour={true}
-                        dateFormat="dayofweek day month"
-                        display="default"
-                        onChange={(e, ctx) => { onChangeDateStart(e, ctx) }}
-                        onTouchEnd={() => setCutiData({ ...cutiData, start: new Date() })}
-                        onTouchEndCapture={() => setCutiData({ ...cutiData, start: new Date() })}
-
-                    // onTouchEnd={()=>setModaldate({...modalDate,start:false})}
-                    />
-
-                )
-
-            }
-
-            {
-                modalDate.end && (
-                    <DateTimePicker
-                        style={{ width: 0, height: 0 }}
-                        testID="dateTimePicker"
-                        value={new Date()}
-
-                        mode="date"
-                        is24Hour={true}
-                        dateFormat="dayofweek day month"
-                        display="default"
-                        onChange={(e, ctx) => { onChangeDateEnd(e, ctx) }}
-                        onTouchEnd={() => setCutiData({ ...cutiData, end: new Date() })}
-                        onTouchEndCapture={() => setCutiData({ ...cutiData, start: new Date() })}
-
-                    // onTouchEnd={()=>setModaldate({...modalDate,start:false})}
-                    />
-
-                )
-
-            }
+    }
 
 
 
+    return (
+        <View style={{ flex: 1, backgroundColor: "orange" }}>
 
-            <View>
-                <View style={{ width: "100%", height: 100 }}>
-                    <View style={{ paddingTop: "7%", alignItems: "center" }}>
-                        <Text style={{ fontSize: 35, color: "white" }}>CUTI</Text>
+            <KeyboardAvoidingView behavior="height">
+
+                {
+                    modalDate.start && (
+                        <DateTimePicker
+                            style={{ width: 0, height: 0 }}
+                            testID="dateTimePicker"
+                            value={new Date()}
+
+                            mode="date"
+                            is24Hour={true}
+                            dateFormat="dayofweek day month"
+                            display="default"
+                            onChange={(e, ctx) => { onChangeDateStart(e, ctx) }}
+                            onTouchEnd={() => setCutiData({ ...cutiData, start: new Date() })}
+                            onTouchEndCapture={() => setCutiData({ ...cutiData, start: new Date() })}
+
+                        // onTouchEnd={()=>setModaldate({...modalDate,start:false})}
+                        />
+
+                    )
+
+                }
+
+                {
+                    modalDate.end && (
+                        <DateTimePicker
+                            style={{ width: 0, height: 0 }}
+                            testID="dateTimePicker"
+                            value={new Date()}
+
+                            mode="date"
+                            is24Hour={true}
+                            dateFormat="dayofweek day month"
+                            display="default"
+                            onChange={(e, ctx) => { onChangeDateEnd(e, ctx) }}
+                            onTouchEnd={() => setCutiData({ ...cutiData, end: new Date() })}
+                            onTouchEndCapture={() => setCutiData({ ...cutiData, start: new Date() })}
+
+                        // onTouchEnd={()=>setModaldate({...modalDate,start:false})}
+                        />
+
+                    )
+
+                }
+
+
+
+
+                <View>
+                    <View style={{ width: "100%", height: 100 }}>
+                        <View style={{ paddingTop: "7%", alignItems: "center" }}>
+                            <Text style={{ fontSize: 35, color: "white" }}>CUTI</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
 
-            <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
                     <View style={{ marginTop: 20, marginHorizontal: "5%", height: 700 }}>
 
                         <View>
@@ -246,11 +245,11 @@ return (
                             </TouchableOpacity>
                         </View>
                     </View>
-            </View>
+                </View>
 
-        </KeyboardAvoidingView>
-    </View >
-)
+            </KeyboardAvoidingView>
+        </View >
+    )
 }
 
 

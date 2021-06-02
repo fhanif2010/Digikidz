@@ -8,14 +8,20 @@ import { useDispatch,useSelector } from 'react-redux';
 const  Loader = (props) =>{
 
 
-    const auth = useSelector(state => state.AuthReducer.auth);
+  const auth = useSelector(state => state.AuthReducer.auth);
+  const status = useSelector(state => state.AuthReducer.status);
     
 
     useEffect(()=>{
 
-      if(auth === 'isLogin'){
-          props.navigation.navigate('Home')
-      }else{
+      if(auth === 'isLogin' && status =="v1" ){
+          props.navigation.navigate('HomeAdmin')
+
+      }
+      if(auth === 'isLogin' && status =="v2" ){
+        props.navigation.navigate('Home')
+    }
+      else{
         props.navigation.navigate('Login') 
       }
 
