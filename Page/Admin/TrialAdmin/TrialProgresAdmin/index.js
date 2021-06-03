@@ -10,25 +10,27 @@ import db from "../../../../Config/index";
 
 
 const TrialProgres = (props) => {
-    const [TrialProgres, setListTrial] = useState([])
+    const [listTrial,setListTrial]=useState([])
+   
+    React.useEffect(() => {
 
-
-    useEffect(() => {
-        db.database().ref().child(`/trial_progres/`)
+        db.database().ref().child("trial_progres")
             .on('value', (snapshoot) => {
                 const data = snapshoot.val();
-                console.log(data)
                 if (data !== null) {
-                    const translateData = Object.keys(data);
-                    const trial = Object.values(translateData)
-                    setListTrial(trial);
+                    const translateData = Object.values(data);
+                    const filter = translateData.filter((data,index)=>{return data.status == 0})
+                    // listCuti(translateData)
+                    setListTrial(filter)
+
                 }
             })
+
+
     }, [])
 
-
-    onTrialProgresTeacher = () => {
-        props.navigation.navigate('TrialProgresTeacher')
+    onTrialProgresTeacher = (data) => {
+        props.navigation.navigate('TrialProgresTeacher',{data:data})
     }
     
     
@@ -46,13 +48,12 @@ const TrialProgres = (props) => {
                         <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                             <View style={{ marginVertical: 6, width: "100%" }}>
                             <FlatList
-                                    data={TrialProgres  }
+                                    data={listTrial}
                                     renderItem={({item}) => {
                                         return (
                                             <TouchableOpacity onPress={() => { onTrialProgresTeacher(item) }} style={{marginTop:6}}>
-                                                {console.log(item)}
                                                 <View style={{ width: "100%", height: 50, flexDirection: "row", alignItems: "center", backgroundColor: "#dfe4ea", borderRadius: 15 ,padding:10}}>
-                                                    <Text style={{ fontSize: 18 }}> {item}</Text>
+                                                    <Text style={{ fontSize: 18 }}> {item.nameStudent}</Text>
                                                 </View>
                                             </TouchableOpacity>
                                         )

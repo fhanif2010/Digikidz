@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
@@ -20,18 +20,19 @@ const Trial = (props) => {
     const time = new Date();
     const timeNow = time.toDateString();
 
+    const bgStatus = ["transparent", "green", "red"];
+
     const [listTrial, setListTrial] = useState([]);
 
     useEffect(() => {
-        db.database().ref().child(`/trial_progres/${timeNow}/${name}`)
+        db.database().ref().child(`/trial_progres/`)
             .on('value', (snapshoot) => {
                 const data = snapshoot.val();
-                console.log(data)
                 if (data !== null) {
                     const translateData = Object.values(data);
                     const trial = Object.values(translateData)
                     setListTrial(trial);
-                    
+
                 }
             })
     }, [])
@@ -40,8 +41,8 @@ const Trial = (props) => {
         props.navigation.navigate('Trial2')
     }
 
-     const onTrial3 = (data) => {
-        props.navigation.navigate('Trial3',{detail:data})
+    const onTrial3 = (data) => {
+        props.navigation.navigate('Trial3', { detail: data })
     }
 
     {
@@ -56,34 +57,41 @@ const Trial = (props) => {
 
 
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        
+                        <ScrollView>
 
-                        <View style={{ marginTop: 20, marginHorizontal: 20 }}>
-                            <ScrollView>
-                            {listTrial.map((data, index) => {
-                        return (
-                            <View style={{ marginVertical: 6, width: "100%" }}>
-                            <TouchableOpacity onPress={() => { onTrial3(data) }}>
-                                <View style={{ width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap' }}>
-                                        <Text > name : {data.name}</Text>
-                                        <Text> program:  {data.program}</Text>
-                                        <Text > level : {data.age}</Text>
-                                        <Text > time :  {data.time}</Text>
-                                    </View>
-                            </TouchableOpacity>
-                        </View>
-                        )
-                    })}
-                            
-                            </ScrollView>
-                        </View>
+
+                         
+
+                            <View style={{ marginTop: 20, marginHorizontal: 20,height:"100%", }}>
+                                {listTrial.map((data, index) => {
+                                    return (
+                                        <View key={index} style={{ marginVertical: 6, width: "100%", backgroundColor: "#dfe4ea" ,height:100}}>
+                                            <TouchableOpacity style={{ flexDirection: "row",display:"flex" }} onPress={() => { onTrial3(data) }}>
+                                                <View style={{ width: "80%", height:"100%", borderRadius: 15, padding: 10, fontSize: 15,  }}>
+                                                    <Text > name : {data.name}</Text>
+                                                    <Text> program:  {data.program}</Text>
+                                                    <Text > level : {data.age}</Text>
+                                                    <Text > time :  {data.time}</Text>
+                                                </View>
+                                                <View style={{ width: "20%", height: "100%", justifyContent: 'center', alignItems: "center" }}>
+                                                    <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: bgStatus[data.status] }}>
+
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+                                    )
+                                })}
+
+                            </View>
+                        </ScrollView>
 
                     </View>
                     <View style={{ alignItems: "center", position: "absolute", right: 20, top: 500 }}>
-                            <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { onTrial2() }}>
-                                <FontAwesomeIcon icon={faPlus} size={35} />
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { onTrial2() }}>
+                            <FontAwesomeIcon icon={faPlus} size={35} />
+                        </TouchableOpacity>
+                    </View>
                 </KeyboardAvoidingView>
             </View >
         )

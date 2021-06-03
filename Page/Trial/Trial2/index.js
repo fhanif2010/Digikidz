@@ -16,18 +16,17 @@ import { useSelector } from 'react-redux';
 const Trial2 = (props) => {
 
     const name = useSelector(state => state.AuthReducer.name);
+    const uid = useSelector(state => state.AuthReducer.uid);
     const time = new Date();
     const timeNow = time.toDateString();
     const id = time.getTime();
     const [state, setState] = useState({
-        name: "", program: "", level: "", gender: "", age: "", note: "", id: id,time: timeNow
+        nameStudent: "", program: "", level: "", gender: "", age: "", note: "", id: id,time: timeNow,name:name,uid:uid,status:0
     })
 
     const onsave = async () => {
         console.log(state)
         db.database().ref('trial_progres')
-            .child(`${timeNow}`)
-            .child(`${name}`)
             .child(`${state.id}`)
             .set(state)
             .then(()=>{
@@ -64,8 +63,8 @@ const Trial2 = (props) => {
 
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
-                                onChangeText={(text) => setState({ ...state, name: text })}
+                                <TextInput  style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                onChangeText={(text) => setState({ ...state, nameStudent: text })}
                                 />
                             </View>
                             <View>

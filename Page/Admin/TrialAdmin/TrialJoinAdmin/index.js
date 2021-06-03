@@ -1,16 +1,43 @@
-import React from "react";
+import React,{useState} from "react";
 import {
     View,
     Text,
     KeyboardAvoidingView,
     TouchableOpacity 
 } from "react-native";
-
+import db from "../../../../Config"
 
 const TrialJoin = (props) => {
 
-    onTrialJoinList = () => {
-        props.navigation.navigate('TrialJoinList')
+    const [listCuti,setListCuti]=useState([])
+
+    const getData = async () =>{
+
+        db.firestore()
+        .collection("User_data")
+        .onSnapshot(async (snapshot)  => {
+          const listItems = snapshot.docs.map(doc => ({
+            ...doc.data(),
+          }))
+          // console.log(listItems)
+          const filterUser = await listItems.filter((data,index)=>{return data.status == "v2"});
+          setListCuti(filterUser);
+          
+
+        })
+
+        return listCuti
+    }
+    
+
+    React.useEffect(()=>{
+        getData()
+
+    },[])
+
+
+   const onTrialJoinList = (data) => {
+        props.navigation.navigate('TrialJoinList',{data:data})
     }
 
 
@@ -24,14 +51,19 @@ const TrialJoin = (props) => {
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        <View style={{ marginTop: 20, marginHorizontal: 20, }}>
-                            <TouchableOpacity onPress={() => { this.onTrialJoinList() }} >
-                                <View style={styles.form.Textarea}>
-                                    <Text style={styles.form.Textarea.Text}> Faisal Hanif </Text>
-                                    <Text style={styles.form.Textarea.Text}> Teacher </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        {listCuti.map((data,index)=>{
+                            return (
+                                <View style={{ marginTop: 20, marginHorizontal: 20, }}>
+                                <TouchableOpacity onPress={()=>{onTrialJoinList(data)}} >
+                                    <View style={styles.form.Textarea}>
+                                        <Text style={styles.form.Textarea.Text}> {data.name} </Text>
+                                        <Text style={styles.form.Textarea.Text}> {data.posisi} </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            )
+                        })}
+                   
                     </View>
                 </KeyboardAvoidingView>
             </View >

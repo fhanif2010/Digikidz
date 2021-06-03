@@ -85,10 +85,7 @@ const Trial3 = (props) => {
                                 <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
                                 <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" , color: "black" }}>{state.note} </TextInput>
                             </View>
-                            <View>
-                                <Text style={{ fontSize: 20, color: "orange" }}>Status</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" , color: "black" }}>{state.age}</TextInput>
-                            </View>
+                           
                         </View>
                     
                 </View>
