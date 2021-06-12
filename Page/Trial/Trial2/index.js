@@ -3,8 +3,6 @@ import {
     View,
     Text,
     TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity
@@ -24,6 +22,32 @@ const Trial2 = (props) => {
         nameStudent: "", program: "", level: "", gender: "", age: "", note: "", id: id,time: timeNow,name:name,uid:uid,status:0
     })
 
+    const onValidation = () => {
+        var j = null;
+        const dataForm = [{name:"nameStudent",value:state.nameStudent},
+                          {name:"program",value:state.program},
+                          {name:"level",value:state.level},
+                          {name:"gender",value:state.gender},
+                          {name:"age",value:state.age},
+                          {name:"note", value:state.note}]
+
+        for (var i = 0;i < dataForm.length; i++){
+            if(dataForm[i].value == ""){
+                j = i;
+                break;
+            }
+            else{
+                j = dataForm.length;
+            }
+        }
+        if(j == dataForm.length){
+            onsave();
+        }
+        else{
+            alert(`${dataForm[j].name} belum lengkap `)
+        }
+    }
+    
     const onsave = async () => {
         console.log(state)
         db.database().ref('trial_progres')
@@ -37,12 +61,7 @@ const Trial2 = (props) => {
             })
     }
 
-    onTrial = () => {
-        props.navigation.navigate('Trial')
-    }
-    onTrial2 = () => {
-        props.navigation.navigate('Trial2')
-    }
+
     {
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
@@ -105,7 +124,7 @@ const Trial2 = (props) => {
                                         </View>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onsave}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onValidation}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Upload</Text>
                                         </View>

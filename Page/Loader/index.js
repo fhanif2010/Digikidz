@@ -15,7 +15,7 @@ const  Loader = (props) =>{
     useEffect(()=>{
 
       if(auth === 'isLogin' && status =="v1" ){
-          props.navigation.navigate('HomeAdmin')
+          props.navigation.navigate('Home')
 
       }
       if(auth === 'isLogin' && status =="v2" ){

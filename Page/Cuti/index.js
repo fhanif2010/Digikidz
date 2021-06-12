@@ -54,7 +54,8 @@ const Cuti = (props) => {
                         </View>
                     </View>
 
-                    <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                    <View style={{ backgroundColor: "white", width: "100%", height: 750, borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                       <ScrollView>
                         <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                             
                             <View style={{ marginVertical: 6, width: "100%" }}>
@@ -66,7 +67,6 @@ const Cuti = (props) => {
                                             <Text style={{ fontSize: 18 }}> - </Text>
                                             <Text style={{ fontSize: 18 }}> {cutiStatus[data.status]} </Text>
                                             <View style={{height:15,width:15,backgroundColor:bgStatus[data.status],borderRadius:10}}>
-
                                             </View>
                                         </View>
                                     </TouchableOpacity>
@@ -75,7 +75,7 @@ const Cuti = (props) => {
                                
                             </View>
                         </View>
-
+                        </ScrollView>
                     </View>
                     <View style={{ alignItems: "center", marginTop: 10, position: "absolute", right: 20, top: 500 }}>
                                 <TouchableOpacity style={{ width: 60, height: 60, backgroundColor: "#dfe4ea", borderRadius: 50, alignItems: "center", justifyContent: "center" }} onPress={() => { this.onCuti2() }}>

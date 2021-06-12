@@ -51,9 +51,11 @@ const TrialJoin = (props) => {
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                    <View style={{ marginTop: 20}}>
+
                         {listCuti.map((data,index)=>{
                             return (
-                                <View style={{ marginTop: 20, marginHorizontal: 20, }}>
+                                <View style={{ marginTop: 3, marginHorizontal: 20, }}>
                                 <TouchableOpacity onPress={()=>{onTrialJoinList(data)}} >
                                     <View style={styles.form.Textarea}>
                                         <Text style={styles.form.Textarea.Text}> {data.name} </Text>
@@ -64,6 +66,7 @@ const TrialJoin = (props) => {
                             )
                         })}
                    
+                    </View>
                     </View>
                 </KeyboardAvoidingView>
             </View >

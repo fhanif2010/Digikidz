@@ -49,13 +49,13 @@ const HistoryTask = (props) => {
                                     return (
                                         <View style={{ marginTop: 10, marginHorizontal: 20, }} >
                                             <TouchableOpacity  style={{ width: "100%" }}>
-                                                <View style={{ width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap' }}>
+                                                <View style={{ width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, }}>
                                                     <Text > name : {item.name}</Text>
                                                     <Text> program:  {item.program}</Text>
                                                     <Text > level : {item.level}</Text>
                                                     <Text > time :  {item.time1} - {item.time2} </Text>
-                                                    <Text > note : {item.note} </Text>
                                                     <Text > status : {item.status} </Text>
+                                                    <Text style={{flex: 1, flexWrap: 'wrap'}}> note : {item.note} </Text>
                                                 </View>
                                             </TouchableOpacity>
                                         </View>
@@ -64,10 +64,7 @@ const HistoryTask = (props) => {
                                 keyExtractor={(item) => item}
                                 extraData={listTask}
                             />
-
-
                         </View>
-
                     </View>
                 </KeyboardAvoidingView>
             </View>

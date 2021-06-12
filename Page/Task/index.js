@@ -86,7 +86,7 @@ const Task = (props) => {
                 </View>
             </View>
 
-            <View style={{ backgroundColor: "white", width: "100%", minHeight: 610, borderTopStartRadius: 40, borderTopEndRadius: 40, paddingTop: 20, paddingBottom: 10 }}>
+            <View style={{ backgroundColor: "white", width: "100%", minHeight: 710, borderTopStartRadius: 40, borderTopEndRadius: 40, paddingTop: 20, paddingBottom: 10 }}>
                 <ScrollView >
                     {listTask.map((anjing, index) => {
                         return (

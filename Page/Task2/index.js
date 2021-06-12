@@ -18,9 +18,38 @@ const Task2 = (props) => {
     const time = new Date();
     const timeNow = time.toDateString();
     const id = time.getTime();
+    const [error,setError] = useState("");
     const [state, setState] = useState({
-        name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id: id,time: timeNow
+        name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id: id,time: timeNow,
     })
+
+    const validation = () =>{
+        var j = null;
+        const dataForm = [{name:"name",value:state.name},
+                      {name:"program",value:state.program},
+                      {name:"level",value:state.level},
+                      {name:"status",value:state.status},
+                      {name:"time 1",value:state.time1},
+                      {name:"time 2",value:state.time2},
+                      {name:"note",value:state.note}]
+
+  
+        for(var i = 0;i <dataForm.length; i++){
+            if(dataForm[i].value == ""){
+                j = i;
+                break;
+            }
+            else{
+                j = dataForm.length;
+            }
+        }
+        if(j == dataForm.length){
+            onSave();
+        }
+        else{
+            alert(`${dataForm[j].name} belum lengkap `)
+        }       
+    }
 
     const onSave = async () => {
       
@@ -35,8 +64,7 @@ const Task2 = (props) => {
             .catch((error) => {
                 alert(error)
             })
-            // .then(()=>{
-           
+     
            
 
     }
@@ -119,7 +147,7 @@ const Task2 = (props) => {
                                     </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onSave}>
+                                <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={validation}>
                                     <View style={{ alignItems: "center", marginVertical: 11 }}>
                                         <Text style={{ color: "white" }}>Save</Text>
                                     </View>

@@ -72,7 +72,7 @@ const CutiApprove = (props) => {
                                     <TouchableOpacity key={index} onPress={() => { onCutiNameList(data.uid,data.name) }} >
                                     <View style={styles.form.Textarea}>
                                         <Text style={styles.form.Textarea.Text}> {data.name}</Text>
-                                        <Text style={styles.form.Textarea.Text}> {data.position } </Text>
+                                        <Text style={styles.form.Textarea.Text}> {data.posisi } </Text>
                                     </View>
                                 </TouchableOpacity>
                                 )

@@ -4,15 +4,14 @@ import {
     Text,
     TextInput,
     KeyboardAvoidingView,
-    ScrollView,
     Dimensions,
     TouchableOpacity
 
 } from "react-native";
-import moment from "moment";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import db from "../../../Config/index";
+import { State } from "react-native-gesture-handler";
 
 const Cuti2 = (props) => {
 
@@ -21,28 +20,19 @@ const Cuti2 = (props) => {
     const id = useSelector(state => state.AuthReducer.uid);
     const width = Dimensions.get("screen").width;
     const height = Dimensions.get("screen").height;
-
-
     const time = new Date();
     const timeNow = time.toDateString();
-
-
     const [cutiData, setCutiData] = useState({ uid: id, name: name, position: posisi, start: new Date(), end: new Date(), neccessity: "", rangeDate: "", tgl: timeNow, status: "progress" })
     const [modalDate, setModaldate] = useState({ start: false, end: false });
-
-
-
 
 
     const countRangeDate = async () => {
 
         const oneDay = 24 * 60 * 60 * 1000;
 
-
         const startYear = cutiData.start.getUTCFullYear();
         const startMonth = cutiData.start.getMonth() + 1;
         const startDay = cutiData.start.getDate() + 1;
-
 
         const endYear = cutiData.end.getUTCFullYear();
         const endMonth = cutiData.end.getMonth() + 1;
@@ -62,6 +52,28 @@ const Cuti2 = (props) => {
 
     }
 
+    const onValidation =() => {
+        var j= null;
+        const dataForm = [{name:"name",value:cutiData.name},
+                          {name:"neccessity",value:cutiData.neccessity},]
+
+        for (var i = 0;i <dataForm.length; i++){
+            if(dataForm[i].value == ""){
+                j = i;
+                break;
+            }else{
+                j = dataForm.length;
+            }
+        }
+
+        if (j == dataForm.length){
+            onSubmit();
+        }
+        else{
+            // alert(`${dataForm[j].name} belum lengkap`)
+            alert("data  tidak lengkap")
+        }
+    }
 
     const onSubmit = async () => {
         await countRangeDate()
@@ -238,7 +250,7 @@ const Cuti2 = (props) => {
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }}
-                                onPress={onSubmit}>
+                                onPress={onValidation}>
                                 <View style={{ alignItems: "center", marginVertical: 11 }}>
                                     <Text style={{ color: "white" }}>Upload</Text>
                                 </View>

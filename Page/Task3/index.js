@@ -3,9 +3,6 @@ import {
     View,
     Text,
     TextInput,
-    Button,
-    Image,
-    KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity
 } from "react-native";
@@ -16,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Task3 = (props) =>{
 
+    const name = useSelector(state => state.AuthReducer.name);
     const time = new Date();
     const timeNow = time.toDateString();
     const params = props.route.params.data;
@@ -58,7 +56,7 @@ const Task3 = (props) =>{
                             <Text style={{ fontSize: 35, color: "white" }}>TASK</Text>
                         </View>
                     </View>
-                    <ScrollView >
+                    <ScrollView>
                         <View style={{ backgroundColor: "white", borderTopStartRadius: 40, borderTopEndRadius: 40}}>
                                 <View style={{ marginTop: 20, marginHorizontal: "5%" , height: 700}}>
                                     <View>
@@ -112,8 +110,8 @@ const Task3 = (props) =>{
                                         <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
                                         <TextInput style={{ borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd", borderRadius: 15 }}
                                     onChangeText={(text) => setState({ ...state,note: text })}
-                                    
-                                    > </TextInput>
+                                    value={state.note}
+                                    ></TextInput>
                                     </View>
 
                                     <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>

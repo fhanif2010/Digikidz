@@ -62,13 +62,13 @@ const TaskAdmin3 = (props) => {
                                 renderItem={({ item }) => {
                                     return (
                                         <TouchableOpacity >
-                                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
+                                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, fontSize: 15 }}>
                                                 <Text> Name = {item.name}</Text>
                                                 <Text> Program = {item.program}</Text>
                                                 <Text> Level = {item.level}</Text>
                                                 <Text> Status = {item.status}</Text>
                                                 <Text> Time = {item.time1} - {item.time2}</Text>
-                                                <Text> Note = {item.note}</Text>
+                                                <Text style={{flex: 1, flexWrap: 'wrap'}}> Note = {item.note}</Text>
                                             </View>
                                         </TouchableOpacity>
                                         )

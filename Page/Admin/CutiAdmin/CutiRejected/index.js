@@ -52,14 +52,14 @@ const CutiRejected = (props) => {
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-
+                    <View style={{ marginTop: 20}}>
                         {listCuti.map((data,index)=>{
                             return (
-                                <View key={index} style={{ marginTop: 10, marginHorizontal: 20, }}>
+                                <View key={index} style={{ marginTop: 3, marginHorizontal: 20, }}>
                                 <TouchableOpacity onPress={() => { onCutiRejectedList(data) }} >
                                     <View style={styles.form.Textarea}>
                                         <Text style={styles.form.Textarea.Text}> {data.name} </Text>
-                                        <Text style={styles.form.Textarea.Text}> Teacher </Text>
+                                        <Text style={styles.form.Textarea.Text}> {data.posisi} </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -67,7 +67,7 @@ const CutiRejected = (props) => {
                         })}
                     
                     </View>
-                    
+                    </View>
                 </KeyboardAvoidingView>
             </View >
         )

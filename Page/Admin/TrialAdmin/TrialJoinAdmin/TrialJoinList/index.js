@@ -8,8 +8,8 @@ import db from "../../../../../Config"
 
 const TrialJoinList = (props) => {
 
-
     const name = props.route.params.data.name;
+
     const [listCuti, setListCuti] = useState([])
 
     React.useEffect(() => {
@@ -17,7 +17,6 @@ const TrialJoinList = (props) => {
         db.database().ref().child("trial_progres").orderByChild("name").equalTo(name)
             .on('value', (snapshoot) => {
                 const data = snapshoot.val();
-                console.log(data)
                 if (data !== null) {
                     const translateData = Object.values(data);
                     // listCuti(translateData)
@@ -26,11 +25,7 @@ const TrialJoinList = (props) => {
 
                 }
             })
-
-
     }, [])
-
-
 
     {
         return (
@@ -38,17 +33,18 @@ const TrialJoinList = (props) => {
                 <KeyboardAvoidingView behavior="height">
                     <View style={{ height: 100 }}>
                         <View style={{ paddingTop: "7%", alignItems: "center" }}>
-                            <Text style={{ fontSize: 30, color: "white" }}>Cuti Join List</Text>
+                            <Text style={{ fontSize: 30, color: "white" }}>Trial Join List</Text>
                         </View>
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                    <View style={{ marginTop: 20}}>
                         {listCuti.map((data, index) => {
                             return (
-                                <View style={{ marginTop: 20, marginHorizontal: 20, }}>
+                                <View style={{ marginTop: 3, marginHorizontal: 20, }}>
                                     <View style={{ marginTop: 10, width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
-                                        <Text> Name = </Text>
-                                        <Text> Program =  </Text>
-                                        <Text> Level = </Text>
+                                        <Text> Name = {detail.name}</Text>
+                                        <Text> Program = {detail.program} </Text>
+                                        <Text> Level = {detail.level}</Text>
                                         <Text> Gender = </Text>
                                         <Text> Age =  </Text>
                                         <Text> Note =   </Text>
@@ -57,6 +53,7 @@ const TrialJoinList = (props) => {
                             )
                         })}
 
+                    </View>
                     </View>
                 </KeyboardAvoidingView>
             </View >

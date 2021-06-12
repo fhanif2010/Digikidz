@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
@@ -6,8 +6,32 @@ import {
 } from "react-native";
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import db from "../../../../Config"
+import { useSelector, } from 'react-redux';
+
 
 const AdminProfil = (props) => {
+
+
+    const name = useSelector(state => state.AuthReducer.name);
+    const params = props.route.params.data;
+
+    const [state, setState] = useState({
+        nama: ""
+    })
+
+useEffect(()=>{
+    console.log(params)
+    setState((prev)=>({...prev,
+        name:params.name,
+        posisi:params.posisi,
+        email:params.email,
+        telephone:params.telephone,
+        address:params.address,
+        DoB:params.DoB,
+    }))
+},[])
+
     onEditProfil = () => {
         props.navigation.navigate('EditProfil')
     }
@@ -17,12 +41,12 @@ const AdminProfil = (props) => {
             <View style={{ flex: 1 }}>
                 <View style={{ width: "100%", height: 150, backgroundColor: "orange", borderBottomRightRadius: 50, borderBottomLeftRadius: 50, alignItems: "center" }}>
                     <View style={{ paddingTop: "10%", alignItems: "center" }}>
-                        <Text style={{ fontSize: 35, color: "white" }}>faisal hanif</Text>
-                        <Text style={{ fontSize: 20, color: "white" }}>Teacher</Text>
+                        <Text style={{ fontSize: 35, color: "white" }}>{state.name}</Text>
+                        <Text style={{ fontSize: 20, color: "white" }}>{state.posisi}</Text>
                     </View>
 
                     <View>
-                        <TouchableOpacity style={{ width: 200, height: 45, borderRadius: 25, marginTop: 15, marginHorizontal: "20%", backgroundColor: "#a55eea" }} onPress={() => { onEditProfil() }}>
+                        <TouchableOpacity style={{ width: 200, height: 45, borderRadius: 25, marginTop: 15, marginHorizontal: "20%", backgroundColor: "#a55eea" }} onPress={() => { onEditProfil(data) }}>
                             <View style={{ alignItems: "center", justifyContent: "space-around", marginHorizontal: "15%", flexDirection: "row", marginTop: "5%" }}>
                                 <View>
                                     <FontAwesomeIcon icon={faEdit} size={20} color="white" />
@@ -53,19 +77,19 @@ const AdminProfil = (props) => {
 
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Email</Text>
-                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>fhanif665@gmail.com</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{state.email}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>No. Phone</Text>
-                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>089651688182</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{state.telephone}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Address</Text>
-                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>Jl. Akasia No.20 Rt/Rw. 002/012</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{state.address}</Text>
                     </View>
                     <View style={{ marginTop: 15 }}>
                         <Text style={{ fontSize: 15, color: "orange" }}>Date of Birth</Text>
-                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>20-Oktober-1998</Text>
+                        <Text style={{ fontSize: 18, borderBottomWidth: 1 }}>{state.DoB}</Text>
                     </View>
                 </View>
             </View>
