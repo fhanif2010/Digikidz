@@ -40,18 +40,8 @@ const CutiApprove = (props) => {
     },[])
 
 
-    onCutiNameList = (uid,name) => {
-
-       
-        props.navigation.navigate('CutiNameList',{id:uid,name:name})
-    }
-    onHistoty3 = () => {
-
-        props.navigation.navigate('History3')
-    }
-    onTask3 = () => {
-
-        props.navigation.navigate('Task3')
+    onCutiNameList = (data) => {
+        props.navigation.navigate('CutiNameList',{name:data})
     }
 
 
@@ -69,7 +59,7 @@ const CutiApprove = (props) => {
 
                             {listCuti.map((data,index)=>{
                                 return (
-                                    <TouchableOpacity key={index} onPress={() => { onCutiNameList(data.uid,data.name) }} >
+                                    <TouchableOpacity key={index} onPress={() => { onCutiNameList(data) }} >
                                     <View style={styles.form.Textarea}>
                                         <Text style={styles.form.Textarea.Text}> {data.name}</Text>
                                         <Text style={styles.form.Textarea.Text}> {data.posisi } </Text>

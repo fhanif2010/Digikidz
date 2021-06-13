@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
-    TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity
@@ -16,7 +13,7 @@ import db from "../../../../../Config";
 
 const CutiNameList =  (props) => {
 
-    const name = props.route.params.name
+    const name = props.route.params.name.name
     const [listCuti, setListCuti] = useState([])
 
     React.useEffect(() => {
@@ -38,15 +35,6 @@ const CutiNameList =  (props) => {
     }, [])
 
 
-    onCutiNameContent = () => {
-        props.navigation.navigate('CutiNameContent')
-    }
-    onHistoty3 = () => {
-        props.navigation.navigate('History3')
-    }
-    onTask3 = () => {
-        props.navigation.navigate('Task3')
-    }
     {
         return (
             <View style={{ flex: 1, backgroundColor: "orange" }}>
@@ -59,17 +47,17 @@ const CutiNameList =  (props) => {
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
                         <View style={{ marginTop: 20, marginHorizontal: 20,paddingBottom:220 }}>
                             <ScrollView>
-                            {listCuti.map((data, index) => {
-                                return (
-                                    <View style={{ marginTop: 10, width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
-                                        <Text> Name = {data.name}</Text>
-                                        <Text> Position = {data.position} </Text>
-                                        <Text> Total = </Text>
-                                        <Text> Neccessity =  </Text>
-                                        <Text> Note =   </Text>
-                                    </View>
-                                )
-                            })}
+                            {listCuti.map((data,index)=>{
+                        return (
+                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
+                                                <Text> Name = {data.name} </Text>
+                                                <Text> Position =  {data.position}</Text>
+                                                <Text> Total = {data.range}</Text>
+                                                <Text> Neccessity = {data.neccessity } </Text>
+                                                <Text> Note =   {data.note}</Text>
+                                            </View> 
+                        )
+                    })}
 </ScrollView>
                         </View>
                     </View>

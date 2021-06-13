@@ -1,3 +1,4 @@
+import { firestore } from "firebase";
 import React, { useState } from "react";
 import {
     View,
@@ -13,13 +14,82 @@ const CutiProses = (props) => {
 
     const time = new Date();
     const timeNow = time.toDateString();
-
-
     const detail = props.route.params.detail;
-
     const [note, setNote] = useState('');
+    const [profile,setProfile] = useState([])
 
-    const handelApprove = () => {
+
+const onValidation = () => {
+
+    var j = null;
+    const dataForm = [{name:"note",value:note}]
+
+    for(var i = 0;i <dataForm.length; i++){
+        if(dataForm[i].value == ""){
+            j = i;
+            break;
+        }
+        else{
+            j = dataForm.length;
+        }
+    }
+    if(j == dataForm.length){
+        handelApprove();
+    }
+    else{
+        alert(`${dataForm[j].name} belum diisi `)
+    }
+}
+
+const onValidationRejected = () => {
+
+
+    var j = null;
+    const dataForm = [{name:"note",value:note}]
+
+    for(var i = 0;i <dataForm.length; i++){
+        if(dataForm[i].value == ""){
+            j = i;
+            break;
+        }
+        else{
+            j = dataForm.length;
+        }
+    }
+    if(j == dataForm.length){
+        handelReject();
+    }
+    else{
+        alert(`${dataForm[j].name} belum diisi `)
+    }
+}
+
+React.useEffect(()=>{
+    db.firestore()
+    .collection("User_data")
+    .onSnapshot(async (snapshot)  => {
+      const  profileFetch = await snapshot.docs.map(doc => ({
+          ...doc.data(),
+
+        }))
+
+      const filterUser = await profileFetch.filter((data,index)=>{return data.uid == detail.kode});
+
+    setProfile(filterUser)
+      
+    })
+},[])
+
+    const handelApprove = async() => {
+
+   
+
+        const result = parseInt(profile[0].cuti) - parseInt(detail.range) ;
+
+        console.log(detail.range)
+        console.log(profile[0].cuti)
+
+
         db.database().ref(`/cuti/${detail.id}`)
             .update({
                 name: detail.name,
@@ -34,10 +104,17 @@ const CutiProses = (props) => {
                 tgl: detail.tgl,
                 kode: detail.kode
             })
-            .then(()=>{
-                alert("Succes")
-            //     // db.database().ref().child(`/cuti/${detail.id}`).remove()
+            .then(async(value)=>{
 
+                db.firestore().collection("User_data").doc(detail.kode).update(
+                   {"cuti" : result}
+                )
+                .then(()=>{
+                    alert("Succes")
+                })
+            
+                props.navigation.navigate('CutiProgres')
+                
             })
             .catch((error)=>{
                 alert(error)
@@ -61,8 +138,8 @@ const CutiProses = (props) => {
             kode: detail.kode
         })
         .then(()=>{
-            alert("Succes")
-        //     // db.database().ref().child(`/cuti/${detail.id}`).remove()
+            alert("Succes"),
+            props.navigation.navigate('CutiProgres')
 
         })
         .catch((error)=>{
@@ -125,12 +202,12 @@ const CutiProses = (props) => {
                                 </View>
 
                                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={handelReject}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onValidationRejected}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Rejected</Text>
                                         </View>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={handelApprove}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onValidation}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Approve</Text>
                                         </View>

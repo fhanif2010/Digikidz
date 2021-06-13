@@ -57,7 +57,7 @@ const Task = (props) => {
                     await db.database().ref().child(`/task_container/${timeNow}/${name}`)
                         .set(history)
                         .then(() => {
-                            props.navigation.navigate("Task")
+                            props.navigation.navigate("Home")
                         
                         })
                         .catch((error) => {

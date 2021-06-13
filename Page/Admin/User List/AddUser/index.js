@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -8,10 +8,12 @@ import {
     KeyboardAvoidingView,
     TouchableOpacity
 } from "react-native";
-import { faEdit, faBackward } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import db from '../../../../Config';
+
 
 const AddUser = (props) => {
+
+
 onUserList = () => {
     props.navigation.navigate('UserList')
 }

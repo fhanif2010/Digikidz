@@ -25,7 +25,7 @@ const Task3 = (props) =>{
     const onDeleteTask = () =>{
         db.database().ref(`/task/${timeNow}/${name}/${state.id}`).remove()
         
-        props.navigation.navigate('Task')
+        props.navigation.navigate('Home')
     }
 
     const handleUpdateTask = () =>{

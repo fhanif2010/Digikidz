@@ -3,8 +3,6 @@ import {
     View,
     Text,
     TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity
@@ -69,12 +67,12 @@ const Task2 = (props) => {
 
     }
 
-    onTask = () => {
-        props.navigation.navigate('Task')
+     const  onTask2 = () => {
+            setState({...state,  name: "", program: "", level: "", status: "", time1: "", time2: "", note: "", id: id,time: timeNow,})
+         console.log(state)
+
     }
-    onTask2 = () => {
-        props.navigation.navigate('Task2')
-    }
+
     return (
         <View style={{ flex: 1, backgroundColor: "orange" }}>
             <KeyboardAvoidingView behavior="height">
@@ -93,6 +91,7 @@ const Task2 = (props) => {
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
                                 <TextInput
+                                    value={state.name}
                                     style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                     onChangeText={(text) => setState({ ...state, name: text })}
                                 />
@@ -100,6 +99,7 @@ const Task2 = (props) => {
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Program</Text>
                                 <TextInput
+                                value={state.program}
                                     style={{ borderRadius: 15, borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                     onChangeText={(text) => setState({ ...state, program: text })}
 
@@ -141,7 +141,7 @@ const Task2 = (props) => {
                             </View>
 
                             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                                <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { onTask2() }}>
+                                <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onTask2}>
                                     <View style={{ alignItems: "center", marginVertical: 11 }}>
                                         <Text style={{ color: "white" }}>Clear</Text>
                                     </View>

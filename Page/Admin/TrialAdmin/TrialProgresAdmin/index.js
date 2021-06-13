@@ -4,7 +4,8 @@ import {
     Text,
     KeyboardAvoidingView,
     TouchableOpacity,
-    FlatList
+    FlatList,
+    ScrollView,
 } from "react-native";
 import db from "../../../../Config/index";
 
@@ -44,9 +45,12 @@ const TrialProgres = (props) => {
                         </View>
                     </View>
     
-                    <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
+                    <View style={{ backgroundColor: "white", width: "100%", height: 750, borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
                         <View style={{ marginTop: 20, marginHorizontal: 20 }}>
+                        <ScrollView>
+
                             <View style={{ marginVertical: 6, width: "100%" }}>
+                            
                             <FlatList
                                     data={listTrial}
                                     renderItem={({item}) => {
@@ -62,6 +66,7 @@ const TrialProgres = (props) => {
                                     extraData={TrialProgres}
                                 />
                             </View>
+                            </ScrollView>
                         </View>
                     </View>
                 </KeyboardAvoidingView>

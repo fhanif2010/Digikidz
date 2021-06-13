@@ -2,9 +2,6 @@ import React,{useState} from "react";
 import {
     View,
     Text,
-    TextInput,
-    Button,
-    Image,
     KeyboardAvoidingView,
     ScrollView,
     TouchableOpacity 
@@ -49,12 +46,12 @@ const CutiRejectedList = (props) => {
                 <View style={{ marginTop: 20, marginHorizontal: 20,}}>
                     {listCuti.map((data,index)=>{
                         return (
-                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
+                            <View style={{marginTop: 10,width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, fontSize: 15 }}>
                                                 <Text> Name = {data.name} </Text>
                                                 <Text> Position =  {data.position}</Text>
                                                 <Text> Total = {data.range}</Text>
                                                 <Text> Neccessity = {data.neccessity } </Text>
-                                                <Text> Note =   {data.note}</Text>
+                                                <Text > Note =   {data.note}</Text>
                                             </View> 
                         )
                     })}

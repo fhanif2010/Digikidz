@@ -22,8 +22,6 @@ const TrialJoin = (props) => {
           // console.log(listItems)
           const filterUser = await listItems.filter((data,index)=>{return data.status == "v2"});
           setListCuti(filterUser);
-          
-
         })
 
         return listCuti

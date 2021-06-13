@@ -42,7 +42,7 @@ const HistoryTask = (props) => {
                     </View>
 
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
-                        <View style={{ marginTop: 20, marginHorizontal: 20 }}>
+                        <View style={{ marginTop: 20 }}>
                             <FlatList
                                 data={listTask}
                                 renderItem={({ item }) => {

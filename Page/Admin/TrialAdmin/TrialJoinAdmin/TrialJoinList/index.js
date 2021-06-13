@@ -38,16 +38,17 @@ const TrialJoinList = (props) => {
                     </View>
                     <View style={{ backgroundColor: "white", width: "100%", height: "100%", borderTopStartRadius: 40, borderTopEndRadius: 40 }}>
                     <View style={{ marginTop: 20}}>
+
                         {listCuti.map((data, index) => {
                             return (
                                 <View style={{ marginTop: 3, marginHorizontal: 20, }}>
                                     <View style={{ marginTop: 10, width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap', fontSize: 15 }}>
-                                        <Text> Name = {detail.name}</Text>
-                                        <Text> Program = {detail.program} </Text>
-                                        <Text> Level = {detail.level}</Text>
-                                        <Text> Gender = </Text>
-                                        <Text> Age =  </Text>
-                                        <Text> Note =   </Text>
+                                        <Text> Name = {data.nameStudent}</Text>
+                                        <Text> Program = {data.program} </Text>
+                                        <Text> Level = {data.level}</Text>
+                                        <Text> Gender = {data.gender}</Text>
+                                        <Text> Age =  {data.age}</Text>
+                                        <Text> Note =  {data.note}</Text>
                                     </View>
                                 </View>
                             )

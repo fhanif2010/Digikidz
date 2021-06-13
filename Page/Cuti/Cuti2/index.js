@@ -42,10 +42,7 @@ const Cuti2 = (props) => {
         const endDate = new Date(endYear, endMonth, endDay)
         const diffDays =  Math.round(Math.abs((startDate - endDate) / oneDay));
         // const range = moment().range(startDate,endDate)
-        if (startDate > endDate) {
-            alert("Date is Not valid")
-        }
-          
+       
         return diffDays;
 
 
@@ -53,6 +50,23 @@ const Cuti2 = (props) => {
     }
 
     const onValidation =() => {
+
+        const oneDay = 24 * 60 * 60 * 1000;
+
+        const startYear = cutiData.start.getUTCFullYear();
+        const startMonth = cutiData.start.getMonth() + 1;
+        const startDay = cutiData.start.getDate() + 1;
+
+        const endYear = cutiData.end.getUTCFullYear();
+        const endMonth = cutiData.end.getMonth() + 1;
+        const endDay = cutiData.end.getDate() + 1;
+
+        const startDate = new Date(startYear, startMonth, startDay)
+        const endDate = new Date(endYear, endMonth, endDay)
+        const diffDays =  Math.round(Math.abs((startDate - endDate) / oneDay));
+
+
+
         var j= null;
         const dataForm = [{name:"name",value:cutiData.name},
                           {name:"neccessity",value:cutiData.neccessity},]
@@ -67,11 +81,15 @@ const Cuti2 = (props) => {
         }
 
         if (j == dataForm.length){
-            onSubmit();
+            if(endDate < startDate){
+                alert("tanggal tidak valid")
+            }else{
+                onSubmit();
+
+            }
         }
         else{
-            // alert(`${dataForm[j].name} belum lengkap`)
-            alert("data  tidak lengkap")
+            alert(`${dataForm[j].name} belum lengkap`)
         }
     }
 
@@ -142,7 +160,6 @@ const Cuti2 = (props) => {
                             style={{ width: 0, height: 0 }}
                             testID="dateTimePicker"
                             value={new Date()}
-
                             mode="date"
                             is24Hour={true}
                             dateFormat="dayofweek day month"
@@ -161,6 +178,7 @@ const Cuti2 = (props) => {
                 {
                     modalDate.end && (
                         <DateTimePicker
+                        
                             style={{ width: 0, height: 0 }}
                             testID="dateTimePicker"
                             value={new Date()}
