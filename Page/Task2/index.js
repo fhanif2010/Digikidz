@@ -42,6 +42,7 @@ const Task2 = (props) => {
             }
         }
         if(j == dataForm.length){
+            
             onSave();
         }
         else{
@@ -56,8 +57,9 @@ const Task2 = (props) => {
             .child(`${name}`)
             .child(`${state.id}`)
             .set(state)
-            .then(()=>{
-                        props.navigation.navigate('Task')
+            .then(async()=>{
+                 await alert("task berhasil di simpan")
+                await  props.navigation.navigate('Task')
                     })
             .catch((error) => {
                 alert(error)

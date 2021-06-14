@@ -54,7 +54,7 @@ const Stack = createStackNavigator();
 function Navigation() {
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="HomeAdmin">
+      <Stack.Navigator initialRouteName="Loader">
 
         <Stack.Screen name="Loader" component={Loader}
           options={{ headerShown: false }} />

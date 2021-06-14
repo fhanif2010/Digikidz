@@ -13,7 +13,7 @@ const Profil = () => {
     const numberPhone = useSelector(state => state.AuthReducer.number);
     const dob = useSelector(state => state.AuthReducer.dob);
 
-    onHome = () => {
+  const  onHome = () => {
         this.props.navigation.navigate('Home')
     }
     return (

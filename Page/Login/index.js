@@ -44,10 +44,10 @@ const Login = (props) => {
                         })
 
                         if (docs.data().status === "v2") {
-                            props.navigation.navigate("Home")
+                            props.navigation.replace("Home")
                         }
                         else if (docs.data().status === "v1") {
-                            props.navigation.navigate("HomeAdmin")
+                            props.navigation.replace("HomeAdmin")
                         }
                     })
 

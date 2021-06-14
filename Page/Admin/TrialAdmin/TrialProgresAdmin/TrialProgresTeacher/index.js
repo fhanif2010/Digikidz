@@ -14,10 +14,33 @@ import db from '../../../../../Config'
 
 const TrialProgresTeacher = (props) => {
 
+    const [profile,setProfile] = useState([])
     const detail = props.route.params.data
 
+    React.useEffect(()=>{
+        db.firestore()
+        .collection("User_data")
+        .onSnapshot(async (snapshot)  => {
+          const  profileFetch = await snapshot.docs.map(doc => ({
+              ...doc.data(),
+    
+            }))
+    
+          const filterUser = await profileFetch.filter((data,index)=>{return data.uid == detail.uid});
+          console.log(detail.uid)
+          console.log(filterUser)
+          setProfile(filterUser)
+          
+        })
+    },[])
+
+    console.log(profile)
 
     const handelApprove = () => {
+
+        const result = parseInt(profile[0].trial ) + 1 ;
+
+
         db.database().ref(`/trial_progres/${detail.id}`)
             .update({
                 age: detail.age,
@@ -33,13 +56,22 @@ const TrialProgresTeacher = (props) => {
                 uid: detail.uid
             })
             .then(() => {
-                alert("Succes")
-                //     // db.database().ref().child(`/cuti/${detail.id}`).remove()
+              
+                db.firestore().collection("User_data").doc(detail.uid).update(
+                    {"trial" : result}
+                 )
+                 .then(async()=>{
+                   await  alert("Succes")
+                await  props.navigation.navigate('TrialProgres')
 
-            })
-            .catch((error) => {
-                alert(error)
-            })
+                 })
+             
+                 
+             })
+             .catch((error)=>{
+                 alert(error)
+             })
+ 
 
     }
 
@@ -70,7 +102,7 @@ const TrialProgresTeacher = (props) => {
     }
 
 
-    onTrialProgres = () => {
+    const  onTrialProgres = () => {
 
         props.navigation.navigate('TrialProgres')
     }

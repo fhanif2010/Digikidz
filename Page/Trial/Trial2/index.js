@@ -60,7 +60,9 @@ const Trial2 = (props) => {
                 alert(error)
             })
     }
-
+        const onClear =() =>{
+           setState({ nameStudent: "", program: "", level: "", gender: "", age: "", note: "", id: id,time: timeNow,name:name,uid:uid,status:0});
+        }
 
     {
         return (
@@ -81,44 +83,61 @@ const Trial2 = (props) => {
                         <View style={{ marginTop: 20, marginHorizontal: "5%", }}>
 
                             <View>
-                                <Text style={{ fontSize: 20, color: "orange" }}>Name</Text>
-                                <TextInput  style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                <Text style={{ fontSize: 20, color: "orange" }}>Name Student</Text>
+                                <TextInput  
+                                value={state.nameStudent}
+                                style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, nameStudent: text })}
                                 />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Program</Text>
-                                <TextInput style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                <TextInput
+                                value={state.program}
+                                
+                                style={{  borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, program: text })}
                                 />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Level</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                <TextInput
+                                value={state.level}
+                                
+                                style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, level: text })}
                                 />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Gender</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                <TextInput 
+                                value={state.gender}
+                                
+                                style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, gender: text })}
                                 />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Age</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
+                                <TextInput
+                                value={state.age}
+                                
+                                style={{ borderRadius: 15,borderWidth: 1, height: 36, borderColor: "gray", justifyContent: "center", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, age: text })}
                               />
                             </View>
                             <View>
                                 <Text style={{ fontSize: 20, color: "orange" }}>Note</Text>
-                                <TextInput style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}
+                                <TextInput
+                                value={state.note}
+                                
+                                style={{ borderRadius: 15,borderWidth: 1, height: 150, borderColor: "gray", justifyContent: "flex-end", backgroundColor: "#dddddd" }}
                                 onChangeText={(text) => setState({ ...state, note: text })}
                                 />
                             </View>
 
                             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30}}>
-                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { onTrial2() }}>
+                                    <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={onClear}>
                                         <View style={{ alignItems: "center", marginVertical: 11 }}>
                                             <Text style={{ color: "white" }}>Clear</Text>
                                         </View>

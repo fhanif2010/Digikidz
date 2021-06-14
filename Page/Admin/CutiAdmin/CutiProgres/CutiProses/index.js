@@ -82,13 +82,11 @@ React.useEffect(()=>{
 
     const handelApprove = async() => {
 
-   
+   console.log(detail.kode)
 
         const result = parseInt(profile[0].cuti) - parseInt(detail.range) ;
 
-        console.log(detail.range)
-        console.log(profile[0].cuti)
-
+   
 
         db.database().ref(`/cuti/${detail.id}`)
             .update({

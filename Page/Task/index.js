@@ -52,6 +52,9 @@ const Task = (props) => {
                 if (snapshoot.exists()) {
                     alert('anda sudah upload ')
                 }
+                else if(listTask.length < 1){
+                    alert("isi formulir terlebih dahulu ")
+                }
                 else {
                     await db.database().ref().child(`/task/${timeNow}/${name}`).remove();
                     await db.database().ref().child(`/task_container/${timeNow}/${name}`)
@@ -71,9 +74,8 @@ const Task = (props) => {
     const onTask2 = () => {
         props.navigation.navigate('Task2')
     }
-    const onTask3 = (anjing) => {
-        console.log(anjing)
-        props.navigation.navigate("Task3", { data: anjing })
+    const onTask3 = (ctx) => {
+        props.navigation.navigate("Task3", { data: ctx })
     }
 
 
@@ -88,15 +90,15 @@ const Task = (props) => {
 
             <View style={{ backgroundColor: "white", width: "100%", minHeight: 710, borderTopStartRadius: 40, borderTopEndRadius: 40, paddingTop: 20, paddingBottom: 10 }}>
                 <ScrollView >
-                    {listTask.map((anjing, index) => {
+                    {listTask.map((ctx, index) => {
                         return (
                             <View style={{ marginTop: 10, marginHorizontal: 20, }} key={index}>
-                                <TouchableOpacity onPress={() => { onTask3(anjing) }} style={{ width: "100%" }}>
+                                <TouchableOpacity onPress={() => { onTask3(ctx) }} style={{ width: "100%" }}>
                                     <View style={{ width: "100%", minHeight: 50, backgroundColor: "#dfe4ea", borderRadius: 15, padding: 10, fontSize: 15, display: 'flex', flexWrap: 'wrap' }}>
-                                        <Text > name : {anjing.name}</Text>
-                                        <Text> program:  {anjing.program}</Text>
-                                        <Text > level : {anjing.level}</Text>
-                                        <Text > time :  {anjing.time1} - {anjing.time2} </Text>
+                                        <Text > name : {ctx.name}</Text>
+                                        <Text> program:  {ctx.program}</Text>
+                                        <Text > level : {ctx.level}</Text>
+                                        <Text > time :  {ctx.time1} - {ctx.time2} </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>

@@ -5,7 +5,8 @@ import {
     TextInput,
     KeyboardAvoidingView,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    BackHandler
 
 } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -93,6 +94,8 @@ const Cuti2 = (props) => {
         }
     }
 
+
+
     const onSubmit = async () => {
         await countRangeDate()
         .then((data)=>{
@@ -157,6 +160,8 @@ const Cuti2 = (props) => {
                 {
                     modalDate.start && (
                         <DateTimePicker
+                        
+                            onTouchCancel={() => setCutiData({ ...cutiData, start: new Date() })}
                             style={{ width: 0, height: 0 }}
                             testID="dateTimePicker"
                             value={new Date()}
@@ -261,9 +266,9 @@ const Cuti2 = (props) => {
 
 
                         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 30 }}>
-                            <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { this.onCuti2() }}>
+                            <TouchableOpacity style={{ width: 120, height: 45, borderRadius: 25, backgroundColor: "#a55eea" }} onPress={() => { props.navigation.navigate("Cuti") }}>
                                 <View style={{ alignItems: "center", marginVertical: 11 }}>
-                                    <Text style={{ color: "white" }}>Clear</Text>
+                                    <Text style={{ color: "white" }}>Back</Text>
                                 </View>
                             </TouchableOpacity>
 
