@@ -16,6 +16,4 @@ Mobile Apps for send daily report
 ## Install 
  1. delete your package.lock.json
  2. npm install
- ## Screnshoot
- ![image](Screenshoot/ss.jpg "Title")
- 
+
